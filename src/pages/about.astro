@@ -23,9 +23,21 @@ import { site } from '../site.config';
     <section class="section--compact">
       <div class="container about-grid">
         <aside class="profile-panel glass-panel">
-          <div class="profile-monogram">JC</div>
-          <h3>{site.role}</h3>
-          <p>{site.location}</p>
+          <div class="profile-identity">
+            <img
+              class="profile-portrait"
+              src="/assets/jc-pelotea-portrait.jpg"
+              alt="Professional portrait of Joshua Carl Pelotea (JC)"
+              width="576"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="profile-copy">
+              <h3>{site.role}</h3>
+              <p>{site.location}</p>
+            </div>
+          </div>
           <div class="contact-links">
             <a class="button button--small" href={site.booking} target="_blank" rel="noopener">Book a call ↗</a>
             <a class="button button--ghost button--small" href={`mailto:${site.email}`}>Email</a>
