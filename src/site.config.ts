@@ -9,6 +9,7 @@ export const site = {
   role: 'Business Operations & Executive Support Specialist',
   location: 'Butuan City, Philippines',
   email: 'peloteajoshuacarl0@gmail.com',
+  booking: 'https://calendar.app.google/Y2ZHPjRLXgX4YoJu5',
   social: {
     linkedin: 'https://www.linkedin.com/in/jcpelotea',
     github: 'https://github.com/Jpelotea',

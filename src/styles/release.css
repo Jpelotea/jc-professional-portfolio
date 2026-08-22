@@ -143,6 +143,10 @@
     font-size: .78rem;
   }
 
+  .hero-booking-cta {
+    display: none;
+  }
+
   .nav-work-cta {
     display: none;
   }
