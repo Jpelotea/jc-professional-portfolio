@@ -10,6 +10,7 @@
     "check": "astro check",
     "check:links": "node scripts/check-internal-links.mjs",
     "check:images": "node scripts/check-image-dimensions.mjs",
+    "check:external": "node scripts/check-external-links.mjs",
     "report:build": "node scripts/report-build-baseline.mjs"
   },
   "engines": {
