@@ -13,6 +13,8 @@ export type Project = {
   image?: string;
   imageAlt?: string;
   live?: string;
+  liveLabel?: string;
+  liveNote?: string;
   github?: string;
   featured?: boolean;
 };
@@ -50,6 +52,9 @@ export const projects: Project[] = [
     image: '/assets/avodah-ops.webp',
     imageAlt: 'Composite of Avodah operations dashboards and workflow systems',
     live: 'https://avodahwealthadvisory.netlify.app/',
+    liveLabel: 'View Avodah website ↗',
+    liveNote:
+      'The public website is one digital-operations deliverable. The operations hub, dashboards, recruitment systems, documentation, and internal workflows described in this case study are represented by the portfolio evidence on this page—not by the website link itself.',
     featured: true
   },
   {
@@ -76,6 +81,7 @@ export const projects: Project[] = [
     image: '/assets/openready.webp',
     imageAlt: 'Composite of OpenReady homepage, assessment workspace, and roadmap',
     live: 'https://getopenready.netlify.app',
+    liveLabel: 'Open live product ↗',
     github: 'https://github.com/Jpelotea/openready',
     featured: true
   },
@@ -101,6 +107,7 @@ export const projects: Project[] = [
       'The project established a more coherent brand and repeatable communications system for future recruitment and marketing activity.',
     tools: ['Brand documentation', 'Content planning', 'Wix', 'Google Workspace', 'AI-assisted content systems'],
     live: 'https://jcpelotea.wixsite.com/zeta',
+    liveLabel: 'View ICE Zeta website ↗',
     featured: true
   },
   {
@@ -125,6 +132,10 @@ export const projects: Project[] = [
     outcome:
       'The product progressed into a more structured production-verified and private-beta-ready state with clearer release criteria and operational tracking.',
     tools: ['GitHub', 'Supabase', 'Cloudflare', 'React/Vite/TypeScript ecosystem', 'QA workflows', 'AI-assisted analysis'],
+    live: 'https://konnevia.pages.dev',
+    liveLabel: 'Open public preview ↗',
+    liveNote:
+      'Konnevia is presented here as product-operations, QA, documentation, and release-readiness work. Its source repository remains private; this button opens the public deployment only.',
     featured: true
   }
 ];
