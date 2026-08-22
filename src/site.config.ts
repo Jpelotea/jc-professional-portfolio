@@ -7,6 +7,7 @@ export const site = {
     'Business Operations & Executive Support portfolio of Joshua Carl Pelotea (JC), featuring operations systems, workflow automation, documentation, digital projects, and marketing support.',
   url: 'https://portfolio.jcpelotea.workers.dev',
   role: 'Business Operations & Executive Support Specialist',
+  compactRole: 'Business Operations & Executive Support',
   location: 'Butuan City, Philippines',
   email: 'peloteajoshuacarl0@gmail.com',
   booking: 'https://calendar.app.google/Y2ZHPjRLXgX4YoJu5',

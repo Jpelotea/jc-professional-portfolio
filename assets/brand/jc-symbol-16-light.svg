@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="JC Pelotea brand symbol">
-  <rect width="120" height="120" rx="18" fill="#0D1118"/>
   <g>
     <path d="M 36.245,48.634 A 29,29 0 1 1 83.755,48.634" fill="none" stroke="#21AEE8" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M 71.366,36.245 A 29,29 0 1 1 71.366,83.755" fill="none" stroke="#21AEE8" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 83.755,71.366 A 29,29 0 1 1 36.245,71.366" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 48.634,83.755 A 29,29 0 1 1 48.634,36.245" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 83.755,71.366 A 29,29 0 1 1 36.245,71.366" fill="none" stroke="#0D1118" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 48.634,83.755 A 29,29 0 1 1 48.634,36.245" fill="none" stroke="#0D1118" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 </svg>
