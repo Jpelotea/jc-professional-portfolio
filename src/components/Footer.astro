@@ -8,11 +8,15 @@ const year = new Date().getFullYear();
       <strong>{site.name}</strong>
       <p>{site.role}</p>
     </div>
-    <div class="footer-links" aria-label="Social links">
+    <div class="footer-links" aria-label="Contact and social links">
+      <a href={`mailto:${site.email}`}>Email</a>
       <a href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
       <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>
       <a href={site.social.freelancer} target="_blank" rel="noopener">Freelancer</a>
+      <a href={site.social.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+      <a href={site.social.messenger} target="_blank" rel="noopener">Messenger</a>
       <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>
+      <a href={site.social.viber}>Viber</a>
     </div>
     <p class="footer-note">© {year} {site.name}. Built for clarity, structure, and follow-through.</p>
   </div>
