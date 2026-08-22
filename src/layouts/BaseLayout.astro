@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/refinements.css';
+import '../styles/release.css';
 import { site } from '../site.config';
 
 interface Props {
@@ -14,11 +15,12 @@ const {
   title = site.title,
   description = site.description,
   canonical = Astro.url.pathname,
-  image = '/assets/avodah-ops.webp'
+  image = '/assets/og-default.svg'
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, site.url).toString();
 const imageUrl = new URL(image, site.url).toString();
+const imageType = imageUrl.endsWith('.svg') ? 'image/svg+xml' : imageUrl.endsWith('.webp') ? 'image/webp' : undefined;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -51,6 +53,9 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    {imageType && <meta property="og:image:type" content={imageType} />}
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="JC Pelotea Professional Portfolio" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -83,8 +88,40 @@ const jsonLd = {
     </dialog>
 
     <script is:inline>
+      const setMobileMenu = (open) => {
+        const menu = document.querySelector('[data-mobile-menu]');
+        const toggle = document.querySelector('[data-mobile-menu-toggle]');
+        if (!(menu instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+        if (open) {
+          requestAnimationFrame(() => {
+            const firstLink = menu.querySelector('a');
+            if (firstLink instanceof HTMLElement) firstLink.focus();
+          });
+        }
+      };
+
       document.addEventListener('click', (event) => {
         if (!(event.target instanceof Element)) return;
+
+        const menuToggle = event.target.closest('[data-mobile-menu-toggle]');
+        if (menuToggle instanceof HTMLButtonElement) {
+          const menu = document.querySelector('[data-mobile-menu]');
+          const isOpen = menu instanceof HTMLElement && !menu.hidden;
+          setMobileMenu(!isOpen);
+          return;
+        }
+
+        const mobileMenu = document.querySelector('[data-mobile-menu]');
+        if (mobileMenu instanceof HTMLElement && !mobileMenu.hidden) {
+          if (event.target.closest('[data-mobile-menu] a')) {
+            setMobileMenu(false);
+          } else if (!event.target.closest('[data-mobile-menu]')) {
+            setMobileMenu(false);
+          }
+        }
 
         const themeButton = event.target.closest('[data-theme-toggle]');
         if (themeButton) {
@@ -121,6 +158,14 @@ const jsonLd = {
         if (event.target instanceof HTMLDialogElement && event.target.matches('[data-lightbox-dialog]')) {
           event.target.close();
         }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMobileMenu(false);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 980) setMobileMenu(false);
       });
     </script>
   </body>
