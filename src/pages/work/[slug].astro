@@ -39,7 +39,12 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
             data-lightbox-caption={project.imageAlt || `${project.title} — project preview`}
             aria-label={`View larger ${project.title} preview`}
           >
-            <img src={project.image} alt={project.imageAlt || ''} />
+            <img
+              src={project.image}
+              alt={project.imageAlt || ''}
+              width={project.imageWidth}
+              height={project.imageHeight}
+            />
             <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
           </button>
         ) : (
