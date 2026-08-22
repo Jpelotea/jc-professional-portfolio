@@ -12,6 +12,7 @@ export type Project = {
   tools: string[];
   image?: string;
   imageAlt?: string;
+  socialImage?: string;
   live?: string;
   liveLabel?: string;
   liveNote?: string;
@@ -47,14 +48,15 @@ export const projects: Project[] = [
       '30-day content strategy and campaign creative'
     ],
     outcome:
-      'The engagement created a clearer operating foundation with centralized tracking, repeatable workflows, structured documentation, and stronger visibility across business activities. Portfolio claims remain limited to documented systems and outputs rather than unsupported business-performance metrics.',
+      'The engagement created a clearer operating foundation with centralized tracking, repeatable workflows, structured documentation, and stronger visibility across recurring business activities.',
     tools: ['Google Workspace', 'Google Sheets', 'Apps Script', 'GitHub', 'Netlify', 'Canva', 'ChatGPT', 'Google Gemini'],
     image: '/assets/avodah-ops.webp',
     imageAlt: 'Composite of Avodah operations dashboards and workflow systems',
+    socialImage: '/assets/avodah-ops.webp',
     live: 'https://avodahwealthadvisory.netlify.app/',
     liveLabel: 'View Avodah website ↗',
     liveNote:
-      'The public website is one digital-operations deliverable. The operations hub, dashboards, recruitment systems, documentation, and internal workflows described in this case study are represented by the portfolio evidence on this page—not by the website link itself.',
+      'The public website represents one digital-operations deliverable. The broader operations work in this case study is demonstrated through the dashboards, workflow systems, documentation, and portfolio evidence shown here.',
     featured: true
   },
   {
@@ -80,6 +82,7 @@ export const projects: Project[] = [
     tools: ['Astro', 'JavaScript', 'GitHub', 'Netlify', 'Documentation systems'],
     image: '/assets/openready.webp',
     imageAlt: 'Composite of OpenReady homepage, assessment workspace, and roadmap',
+    socialImage: '/assets/openready.webp',
     live: 'https://getopenready.netlify.app',
     liveLabel: 'Open live product ↗',
     github: 'https://github.com/Jpelotea/openready',
@@ -106,6 +109,7 @@ export const projects: Project[] = [
     outcome:
       'The project established a more coherent brand and repeatable communications system for future recruitment and marketing activity.',
     tools: ['Brand documentation', 'Content planning', 'Wix', 'Google Workspace', 'AI-assisted content systems'],
+    socialImage: '/assets/og-ice-zeta.svg',
     live: 'https://jcpelotea.wixsite.com/zeta',
     liveLabel: 'View ICE Zeta website ↗',
     featured: true
@@ -116,7 +120,7 @@ export const projects: Project[] = [
     title: 'Konnevia',
     category: 'Product Operations · Digital QA · Release Readiness',
     summary:
-      'Product coordination, technical QA, documentation, deployment validation, and private-beta readiness for a SaaS-style platform.',
+      'Product coordination, technical QA, documentation, deployment validation, and private-beta readiness work for a SaaS-style platform.',
     challenge:
       'The platform needed coherent release discipline across authentication, tenant separation, deployment, configuration, security checks, QA, and beta-readiness decisions.',
     approach:
@@ -130,12 +134,13 @@ export const projects: Project[] = [
     ],
     deliverables: ['Product blueprint', 'Private-beta readiness audit', 'Brand guidelines', 'Production QA checklist', 'Security/configuration review', 'GitHub tracking'],
     outcome:
-      'The product progressed into a more structured production-verified and private-beta-ready state with clearer release criteria and operational tracking.',
+      'The product progressed toward private-beta readiness with clearer release criteria, production validation, QA standards, and operational tracking.',
     tools: ['GitHub', 'Supabase', 'Cloudflare', 'React/Vite/TypeScript ecosystem', 'QA workflows', 'AI-assisted analysis'],
+    socialImage: '/assets/og-konnevia.svg',
     live: 'https://konnevia.pages.dev',
     liveLabel: 'Open public preview ↗',
     liveNote:
-      'Konnevia is presented here as product-operations, QA, documentation, and release-readiness work. Its source repository remains private; this button opens the public deployment only.',
+      'Konnevia is presented here through product operations, QA, documentation, release coordination, and readiness work. Its source repository remains private; this button opens the public deployment only.',
     featured: true
   }
 ];
