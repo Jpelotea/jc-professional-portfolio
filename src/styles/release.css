@@ -1,0 +1,133 @@
+/* Release-candidate refinements: mobile navigation, responsive cards, safe areas, and interaction polish. */
+
+.mobile-menu-toggle,
+.mobile-menu-wrap {
+  display: none;
+}
+
+.lightbox-close {
+  width: 44px;
+  height: 44px;
+}
+
+@media (max-width: 980px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-grid;
+    place-items: center;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .mobile-menu-wrap {
+    display: block;
+    position: relative;
+    z-index: 45;
+    pointer-events: none;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: .45rem;
+    right: 0;
+    width: min(360px, calc(100vw - 2rem));
+    padding: .65rem;
+    border-radius: 18px;
+    pointer-events: auto;
+  }
+
+  .mobile-menu[hidden] {
+    display: none !important;
+  }
+
+  .mobile-menu nav {
+    margin: 0;
+    display: grid !important;
+    gap: .2rem;
+  }
+
+  .mobile-menu nav a {
+    display: flex;
+    align-items: center;
+    min-height: 46px;
+    padding: .72rem .85rem;
+    border-radius: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .9rem;
+  }
+
+  .mobile-menu nav a:hover,
+  .mobile-menu nav a:focus-visible {
+    color: var(--text);
+    background: var(--surface-subtle);
+  }
+
+  .mobile-menu nav .mobile-menu__cta {
+    margin-top: .3rem;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #5fd4ff));
+    color: #03131b;
+    font-weight: 800;
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    padding-bottom: calc(4.85rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-action-bar {
+    left: .65rem;
+    right: .65rem;
+    bottom: max(.5rem, env(safe-area-inset-bottom));
+    padding: .35rem;
+    gap: .35rem;
+    border-radius: 18px;
+  }
+
+  .mobile-action-bar .button {
+    min-height: 44px;
+    padding: .65rem .85rem;
+    font-size: .78rem;
+  }
+
+  .nav-work-cta {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .project-card {
+    grid-template-columns: 1fr !important;
+    gap: .8rem !important;
+    padding: 1rem !important;
+  }
+
+  .project-card .project-index {
+    font-size: .72rem !important;
+    line-height: 1;
+    color: var(--accent-2);
+    letter-spacing: .12em;
+  }
+
+  .project-card__copy {
+    display: block;
+  }
+
+  .project-card h3 {
+    margin-top: .3rem;
+  }
+
+  .project-card .project-visual {
+    width: 100%;
+    margin-top: .15rem;
+  }
+
+  .project-card__cta {
+    margin-top: .65rem;
+  }
+}
