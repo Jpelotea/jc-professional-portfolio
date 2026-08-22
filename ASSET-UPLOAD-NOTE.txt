@@ -1,1 +1,0 @@
-Binary proof assets are staged separately for Git tree insertion.
