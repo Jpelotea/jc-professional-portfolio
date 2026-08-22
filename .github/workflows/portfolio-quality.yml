@@ -35,6 +35,9 @@ jobs:
       - name: Astro check
         run: npm run check
 
+      - name: Test first-party event endpoint
+        run: npm run test:events
+
       - name: Production build
         run: bash build-cloudflare.sh
 
@@ -67,6 +70,7 @@ jobs:
           test -f dist/icon-192.png
           test -f dist/icon-512.png
           test -d dist/assets
+          test -f dist/assets/analytics-events.js
           test -f dist/assets/brand/jc-symbol-16-dark.svg
           test -f dist/assets/brand/jc-symbol-16-light.svg
           test -f dist/assets/brand/jc-symbol-simplified-dark.svg
@@ -81,6 +85,7 @@ jobs:
           test -f dist/assets/avodah-ops.png
           test -f dist/assets/avodah-creative.png
           test -f dist/assets/openready.png
+          grep -q '/assets/analytics-events.js' dist/index.html
           grep -q 'static.cloudflareinsights.com' dist/_headers
           grep -q 'cloudflareinsights.com' dist/_headers
 
@@ -97,3 +102,4 @@ jobs:
           grep -q 'data-cf-beacon' dist/index.html
           grep -q 'name="google-site-verification"' dist/index.html
           test "$(grep -R -l 'name="google-site-verification"' dist --include='*.html' | wc -l)" -eq 1
+          test "$(grep -o '/assets/analytics-events.js' dist/index.html | wc -l)" -eq 1
