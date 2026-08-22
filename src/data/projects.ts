@@ -113,6 +113,8 @@ export const projects: Project[] = [
     outcome:
       'The project established a more coherent brand and repeatable communications system for future recruitment and marketing activity.',
     tools: ['Brand documentation', 'Content planning', 'Wix', 'Google Workspace', 'AI-assisted content systems'],
+    image: '/assets/ice-zeta-website-2026-08.png',
+    imageAlt: 'ICE Zeta Group website homepage featuring its leadership and career-development message',
     socialImage: '/assets/og-ice-zeta.png',
     live: 'https://jcpelotea.wixsite.com/zeta',
     liveLabel: 'View ICE Zeta website ↗',
@@ -140,6 +142,8 @@ export const projects: Project[] = [
     outcome:
       'The product progressed toward private-beta readiness with clearer release criteria, production validation, QA standards, and operational tracking.',
     tools: ['GitHub', 'Supabase', 'Cloudflare', 'React/Vite/TypeScript ecosystem', 'QA workflows', 'AI-assisted analysis'],
+    image: '/assets/konnevia-website-2026-08.png',
+    imageAlt: 'Konnevia website landing page introducing its profile, conversations, leads, and appointments hub',
     socialImage: '/assets/og-konnevia.png',
     live: 'https://konnevia.pages.dev',
     liveLabel: 'Open public preview ↗',
