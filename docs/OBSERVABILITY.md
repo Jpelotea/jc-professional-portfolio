@@ -1,6 +1,6 @@
 # v1.0.1 observability setup
 
-The repository prepares the portfolio for privacy-conscious page analytics and Search Console verification, but account-side activation is intentionally separate from source control.
+The repository prepares the portfolio for privacy-conscious page analytics, first-party CTA measurement, and Search Console verification. Cloudflare Web Analytics and Search Console still require account-side confirmation before `v1.0.1` is released.
 
 Production hostname: `https://portfolio.jcpelotea.workers.dev`
 
@@ -21,40 +21,100 @@ Cloudflare Web Analytics is used for page-level observability: visits, page view
 6. Confirm a request is sent to Cloudflare RUM (`/cdn-cgi/rum` on a Cloudflare-proxied site or the documented Cloudflare Insights endpoint where applicable).
 7. Confirm page data appears in the Cloudflare Web Analytics dashboard before marking the deployment gate complete.
 
-The build injects the beacon only when `CF_WEB_ANALYTICS_TOKEN` is present. A missing variable leaves the site functional and uninstrumented.
+The build injects the beacon only when `CF_WEB_ANALYTICS_TOKEN` is present. A missing variable leaves the page-level Web Analytics integration disabled without affecting the site or first-party CTA endpoint.
 
 The CSP allows the documented Web Analytics script and beacon endpoints:
 
 - `script-src`: `https://static.cloudflareinsights.com`
 - `connect-src`: `https://cloudflareinsights.com`
 
-Reference:
+References:
 - https://developers.cloudflare.com/web-analytics/
 - https://developers.cloudflare.com/web-analytics/faq/
 
-## 2. CTA event tracking
+## 2. First-party CTA event tracking
 
-CTA events are **not** emitted in v1.0.1 until an actual reporting destination is selected and configured. Calling `zaraz.track()` without a configured destination/action is intentionally avoided.
+CTA measurement uses **Cloudflare Workers Analytics Engine** rather than a third-party analytics destination or unconfigured `zaraz.track()` calls.
 
-Approved event taxonomy for the eventual destination:
+The Worker configuration defines the dataset binding:
+
+- Binding: `CTA_EVENTS`
+- Dataset: `jc_portfolio_cta_events`
+- Endpoint: `POST /api/events`
+
+Cloudflare creates the Analytics Engine dataset automatically on the first successful write.
+
+The browser sends only:
+
+- approved event name
+- current page path
+
+The Analytics Engine data point stores:
+
+- `index1`: request hostname (sampling key)
+- `blob1`: event name
+- `blob2`: page path
+- `double1`: `1`
+
+The implementation does **not** write visitor IP, country, user agent, referrer, cookie, session ID, account ID, email address, or other personal identifier to the dataset. Browser event delivery also uses `credentials: omit` and `no-referrer`, and is disabled when Global Privacy Control or Do Not Track is enabled.
+
+### Current event taxonomy
 
 - `contact_view`
 - `booking_click`
 - `email_click`
 - `linkedin_click`
 - `freelancer_click`
-- `resume_download` (activate only after the résumé ships)
 
-Before adding client-side event calls:
+`resume_download` remains intentionally absent until the résumé is added in v1.1.0.
 
-1. Select a privacy-compatible event destination or first-party endpoint.
-2. Configure the destination/action in Cloudflare Zaraz or the chosen analytics system.
-3. Send one test event from the branch preview.
-4. Confirm the event is received in the destination dashboard.
-5. Only then wire the approved production event taxonomy into the site.
+### Endpoint safeguards
 
-Reference:
-- https://developers.cloudflare.com/zaraz/web-api/track/
+The endpoint:
+
+- accepts `POST` only;
+- requires a same-origin `Origin` header;
+- requires JSON content;
+- rejects oversized or malformed payloads;
+- allowlists event names;
+- validates page paths;
+- returns `204` after a valid non-blocking Analytics Engine write.
+
+Static pages continue to use direct Workers Static Assets handling. `run_worker_first` is scoped only to `/api/events`.
+
+### Verify a test event
+
+After the branch/production deployment containing the Analytics Engine binding is live:
+
+1. Open the deployed site in a browser without GPC/DNT enabled for the test.
+2. Trigger one known event, such as **Book a discovery call**.
+3. Create a Cloudflare API token with `Account | Account Analytics | Read` permission.
+4. Query the Workers Analytics Engine SQL API for the dataset.
+
+Example query:
+
+```sql
+SELECT
+  blob1 AS event,
+  blob2 AS page_path,
+  SUM(_sample_interval) AS event_count
+FROM jc_portfolio_cta_events
+WHERE timestamp > NOW() - INTERVAL '1' HOUR
+GROUP BY event, page_path
+ORDER BY event_count DESC
+```
+
+Cloudflare SQL API endpoint:
+
+`https://api.cloudflare.com/client/v4/accounts/<account_id>/analytics_engine/sql`
+
+Do not commit the Cloudflare API token or account credentials to the repository.
+
+References:
+- https://developers.cloudflare.com/analytics/analytics-engine/get-started/
+- https://developers.cloudflare.com/workers/examples/analytics-engine/
+- https://developers.cloudflare.com/analytics/analytics-engine/sql-api/
+- https://developers.cloudflare.com/workers/static-assets/binding/
 
 ## 3. Google Search Console
 
@@ -102,9 +162,10 @@ Reference:
 Do not tag `v1.0.1` until all of the following are complete:
 
 - Repository quality workflow is green.
-- Cloudflare beacon loads without CSP violations.
-- Page-level analytics appears in the Cloudflare dashboard.
-- One CTA test event is received by the selected event destination (after that destination is configured).
+- Cloudflare branch deployment with the first-party event endpoint succeeds.
+- One CTA test event is confirmed in `jc_portfolio_cta_events` through the Analytics Engine SQL API.
+- Cloudflare Web Analytics beacon loads without CSP violations.
+- Page-level analytics appears in the Cloudflare Web Analytics dashboard.
 - Search Console URL-prefix property is verified.
 - `sitemap-index.xml` is accepted by Search Console.
 - Weekly external-link monitoring is available on `main` and has been manually validated once.
