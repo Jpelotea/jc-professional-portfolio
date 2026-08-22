@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-npm run build
+rm -rf dist
+mkdir -p dist
 
-# Keep existing verified portfolio assets and host-level static files.
-cp -R assets dist/assets
-cp favicon.svg site.webmanifest robots.txt _headers dist/
+cp index.html 404.html styles.css script.js favicon.svg site.webmanifest robots.txt sitemap.xml _headers dist/
+cp -R projects assets dist/
 
-# Cloudflare static-assets 404 handling expects a root 404.html file.
-cp 404.html dist/404.html
-
-echo "Astro portfolio prepared in ./dist"
+echo "Cloudflare static bundle prepared in ./dist"
