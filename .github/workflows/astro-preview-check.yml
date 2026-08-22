@@ -36,3 +36,6 @@ jobs:
           test -f dist/robots.txt
           test -f dist/_headers
           test -d dist/assets
+          test -f dist/assets/og-default.png
+          test -f dist/assets/og-ice-zeta.png
+          test -f dist/assets/og-konnevia.png
