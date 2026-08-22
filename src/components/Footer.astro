@@ -1,0 +1,19 @@
+---
+import { site } from '../site.config';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>{site.name}</strong>
+      <p>{site.role}</p>
+    </div>
+    <div class="footer-links" aria-label="Social links">
+      <a href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>
+      <a href={site.social.freelancer} target="_blank" rel="noopener">Freelancer</a>
+      <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p class="footer-note">© {year} {site.name}. Built for clarity, structure, and follow-through.</p>
+  </div>
+</footer>
