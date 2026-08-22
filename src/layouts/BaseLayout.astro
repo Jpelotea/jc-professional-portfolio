@@ -15,12 +15,12 @@ const {
   title = site.title,
   description = site.description,
   canonical = Astro.url.pathname,
-  image = '/assets/og-default.svg'
+  image = '/assets/og-default.png'
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, site.url).toString();
 const imageUrl = new URL(image, site.url).toString();
-const imageType = imageUrl.endsWith('.svg') ? 'image/svg+xml' : imageUrl.endsWith('.webp') ? 'image/webp' : undefined;
+const imageType = imageUrl.endsWith('.png') ? 'image/png' : imageUrl.endsWith('.svg') ? 'image/svg+xml' : imageUrl.endsWith('.webp') ? 'image/webp' : undefined;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -86,7 +86,7 @@ const jsonLd = {
     </dialog>
 
     <script is:inline>
-      const setMobileMenu = (open) => {
+      const setMobileMenu = (open, restoreFocus = false) => {
         const menu = document.querySelector('[data-mobile-menu]');
         const toggle = document.querySelector('[data-mobile-menu-toggle]');
         if (!(menu instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
@@ -98,6 +98,8 @@ const jsonLd = {
             const firstLink = menu.querySelector('a');
             if (firstLink instanceof HTMLElement) firstLink.focus();
           });
+        } else if (restoreFocus) {
+          toggle.focus();
         }
       };
 
@@ -159,7 +161,10 @@ const jsonLd = {
       });
 
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setMobileMenu(false);
+        if (event.key === 'Escape') {
+          const menu = document.querySelector('[data-mobile-menu]');
+          if (menu instanceof HTMLElement && !menu.hidden) setMobileMenu(false, true);
+        }
       });
 
       window.addEventListener('resize', () => {
