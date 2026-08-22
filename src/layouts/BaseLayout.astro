@@ -68,15 +68,59 @@ const jsonLd = {
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
+
+    <div class="mobile-action-bar glass-panel" aria-label="Quick contact actions">
+      <a class="button" href={`mailto:${site.email}`}>Email JC</a>
+      <a class="button button--ghost" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+
+    <dialog class="lightbox-dialog" data-lightbox-dialog aria-label="Expanded portfolio image">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image preview">×</button>
+      <figure>
+        <img data-lightbox-image src="" alt="" />
+        <figcaption data-lightbox-caption></figcaption>
+      </figure>
+    </dialog>
+
     <script is:inline>
       document.addEventListener('click', (event) => {
-        const button = event.target.closest('[data-theme-toggle]');
-        if (!button) return;
-        const root = document.documentElement;
-        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem('jc-theme', next);
-        button.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} theme`);
+        if (!(event.target instanceof Element)) return;
+
+        const themeButton = event.target.closest('[data-theme-toggle]');
+        if (themeButton) {
+          const root = document.documentElement;
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          root.dataset.theme = next;
+          localStorage.setItem('jc-theme', next);
+          themeButton.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} theme`);
+          return;
+        }
+
+        const trigger = event.target.closest('[data-lightbox-src]');
+        if (trigger instanceof HTMLElement) {
+          event.preventDefault();
+          const dialog = document.querySelector('[data-lightbox-dialog]');
+          const image = dialog?.querySelector('[data-lightbox-image]');
+          const caption = dialog?.querySelector('[data-lightbox-caption]');
+          if (dialog instanceof HTMLDialogElement && image instanceof HTMLImageElement && caption instanceof HTMLElement) {
+            image.src = trigger.dataset.lightboxSrc || '';
+            image.alt = trigger.dataset.lightboxAlt || '';
+            caption.textContent = trigger.dataset.lightboxCaption || trigger.dataset.lightboxAlt || '';
+            dialog.showModal();
+          }
+          return;
+        }
+
+        const close = event.target.closest('[data-lightbox-close]');
+        if (close) {
+          const dialog = close.closest('dialog');
+          if (dialog instanceof HTMLDialogElement) dialog.close();
+          return;
+        }
+
+        if (event.target instanceof HTMLDialogElement && event.target.matches('[data-lightbox-dialog]')) {
+          event.target.close();
+        }
       });
     </script>
   </body>
