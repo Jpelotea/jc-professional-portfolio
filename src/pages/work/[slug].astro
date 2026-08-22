@@ -30,9 +30,21 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
           )}
           {project.liveNote && <p class="case-link-note">{project.liveNote}</p>}
         </div>
-        <div class="case-visual">
-          {project.image ? <img src={project.image} alt={project.imageAlt || ''} /> : <div class="project-visual project-visual--abstract" style="height:100%"></div>}
-        </div>
+        {project.image ? (
+          <button
+            class="case-visual case-visual--button"
+            type="button"
+            data-lightbox-src={project.image}
+            data-lightbox-alt={project.imageAlt || ''}
+            data-lightbox-caption={`${project.title} — portfolio evidence preview`}
+            aria-label={`Enlarge ${project.title} portfolio preview`}
+          >
+            <img src={project.image} alt={project.imageAlt || ''} />
+            <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+          </button>
+        ) : (
+          <div class="case-visual"><div class="project-visual project-visual--abstract" style="height:100%"></div></div>
+        )}
       </div>
     </section>
 
