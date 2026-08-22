@@ -1,6 +1,6 @@
 {
   "name": "jc-professional-portfolio",
-  "version": "9.0.0-preview",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "scripts": {
