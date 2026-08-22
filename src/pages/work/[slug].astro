@@ -12,7 +12,7 @@ const { project } = Astro.props;
 const title = `${project.title} | Joshua Carl Pelotea (JC)`;
 const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${project.summary}`;
 ---
-<BaseLayout title={title} description={description} canonical={`/work/${project.slug}/`} image={project.socialImage || project.image || '/assets/og-default.svg'}>
+<BaseLayout title={title} description={description} canonical={`/work/${project.slug}/`} image={project.socialImage || project.image || '/assets/og-default.png'}>
   <Header />
   <main id="main">
     <section class="page-hero">
