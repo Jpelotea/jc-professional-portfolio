@@ -29,22 +29,22 @@ const experience = [
     <section class="hero hero--home">
       <div class="container hero-grid hero-grid--home">
         <div class="hero-copy">
-          <p class="eyebrow">Business Operations · Executive Support · Digital Systems</p>
-          <p class="hero-name"><strong>Joshua Carl Pelotea</strong><span>Known professionally as JC</span></p>
-          <h1 class="home-title">Bringing structure to <span class="soft">people, processes,</span> and daily execution.</h1>
-          <p class="lede">I help executives, entrepreneurs, and growing businesses stay organized, efficient, and focused on growth through reliable administrative, operational, and digital support.</p>
-          <div class="hero-actions">
+          <p class="eyebrow" data-motion="hero" style="--motion-delay: 0ms">Business Operations · Executive Support · Digital Systems</p>
+          <p class="hero-name" data-motion="hero" style="--motion-delay: 70ms"><strong>Joshua Carl Pelotea</strong><span>Known professionally as JC</span></p>
+          <h1 class="home-title" data-motion="hero" style="--motion-delay: 150ms">Bringing structure to <span class="soft">people, processes,</span> and daily execution.</h1>
+          <p class="lede" data-motion="hero" style="--motion-delay: 235ms">I help executives, entrepreneurs, and growing businesses stay organized, efficient, and focused on growth through reliable administrative, operational, and digital support.</p>
+          <div class="hero-actions" data-motion="hero" style="--motion-delay: 325ms">
             <a class="button" href="/work/">View selected work <span aria-hidden="true">→</span></a>
             <a class="button button--ghost" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
-          <div class="hero-meta" aria-label="Core disciplines">
+          <div class="hero-meta" data-motion="hero" style="--motion-delay: 400ms" aria-label="Core disciplines">
             <span class="tag">Business Operations</span>
             <span class="tag">Executive Support</span>
             <span class="tag">Workflow Automation</span>
             <span class="tag">Digital Operations</span>
           </div>
         </div>
-        <aside class="identity-card identity-card--home glass-panel">
+        <aside class="identity-card identity-card--home glass-panel" data-motion="hero-card" style="--motion-delay: 180ms">
           <div class="identity-card__meta"><span>JC / Operations profile</span><span>Philippines</span></div>
           <small>The operations mindset</small>
           <blockquote>Support both people and processes.</blockquote>
@@ -61,25 +61,25 @@ const experience = [
 
     <section class="tool-strip" aria-labelledby="tools-heading">
       <div class="container tool-strip__inner">
-        <div>
+        <div data-motion="rise">
           <p class="eyebrow" id="tools-heading">Core tools</p>
           <p>Platforms used across documented operations, automation, digital, and campaign work.</p>
         </div>
         <div class="tool-badges" aria-label="Core software stack">
-          {coreTools.map((tool) => <span>{tool}</span>)}
+          {coreTools.map((tool, index) => <span data-motion="rise" style={`--motion-delay: ${index * 48}ms`}>{tool}</span>)}
         </div>
       </div>
     </section>
 
     <section class="section" id="capabilities">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-motion="rise">
           <div><p class="eyebrow">Capabilities</p><h2>Operations-led support with a practical digital layer.</h2></div>
           <p>Business Operations is the anchor. The supporting capabilities extend the same focus on clarity, visibility, accountability, and consistent execution.</p>
         </div>
         <div class="capability-grid">
-          {capabilities.map(([number, title, description]) => (
-            <article class="capability-card">
+          {capabilities.map(([number, title, description], index) => (
+            <article class="capability-card" data-motion="rise" style={`--motion-delay: ${index * 65}ms`}>
               <span class="number">{number}</span>
               <h3>{title}</h3>
               <p>{description}</p>
@@ -91,13 +91,13 @@ const experience = [
 
     <section class="section" id="work">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-motion="rise">
           <div><p class="eyebrow">Selected work</p><h2>Systems, execution, and proof—not a list of tasks.</h2></div>
           <p>Case studies focus on documented contributions, deliverables, operating outcomes, and the systems used to support the work.</p>
         </div>
         <div class="project-grid">
           {projects.map((project) => (
-            <article class="project-card">
+            <article class="project-card" data-motion="project">
               <span class="project-index">{project.index}</span>
               <a class="project-card__copy" href={`/work/${project.slug}/`}>
                 <small>{project.category}</small>
@@ -138,12 +138,12 @@ const experience = [
 
     <section class="section" id="proof">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-motion="rise">
           <div><p class="eyebrow">Proof of work</p><h2>Real artifacts, condensed for fast review.</h2></div>
           <p>Public previews focus on publishable project artifacts and selected evidence. Select an image to inspect it at a larger size.</p>
         </div>
         <div class="proof-grid">
-          <figure class="proof-card">
+          <figure class="proof-card" data-motion="scale">
             <button
               class="proof-media"
               type="button"
@@ -157,7 +157,7 @@ const experience = [
             </button>
             <figcaption><strong>Operations systems</strong><span>Workflow architecture, dashboards, recruitment, activity monitoring, and calendar coordination.</span></figcaption>
           </figure>
-          <figure class="proof-card">
+          <figure class="proof-card" data-motion="scale" style="--motion-delay: 70ms">
             <button
               class="proof-media"
               type="button"
@@ -177,13 +177,13 @@ const experience = [
 
     <section class="section" id="experience">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-motion="rise">
           <div><p class="eyebrow">Professional experience</p><h2>Built through administration, service, coordination, and leadership.</h2></div>
           <p>The portfolio focuses on current capabilities, while this timeline shows the experience that developed the communication, documentation, and operational discipline behind them.</p>
         </div>
-        <div class="experience-list">
-          {experience.map(([date, company, role, description]) => (
-            <article class="experience-row">
+        <div class="experience-list" data-motion-timeline>
+          {experience.map(([date, company, role, description], index) => (
+            <article class="experience-row" data-motion="rise" style={`--motion-delay: ${index * 45}ms`}>
               <time>{date}</time>
               <div><strong>{company}</strong><span>{role}</span></div>
               <p>{description}</p>
@@ -196,10 +196,10 @@ const experience = [
     <section class="section" id="contact">
       <div class="container">
         <div class="contact-panel glass-panel">
-          <p class="eyebrow">Work with JC</p>
-          <h2>Need stronger structure behind the work?</h2>
-          <p>Share the operational challenge, what tools are already in place, and what a better outcome should look like. I’m open to ongoing support, workflow projects, documentation work, and focused digital operations engagements.</p>
-          <div class="contact-links">
+          <p class="eyebrow" data-motion="rise">Work with JC</p>
+          <h2 data-motion="rise" style="--motion-delay: 70ms">Need stronger structure behind the work?</h2>
+          <p data-motion="rise" style="--motion-delay: 145ms">Share the operational challenge, what tools are already in place, and what a better outcome should look like. I’m open to ongoing support, workflow projects, documentation work, and focused digital operations engagements.</p>
+          <div class="contact-links" data-motion="rise" style="--motion-delay: 225ms">
             <a class="button" href={`mailto:${site.email}`}>Email JC</a>
             <a class="button button--ghost" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
             <a class="button button--ghost" href={site.social.freelancer} target="_blank" rel="noopener">Freelancer ↗</a>

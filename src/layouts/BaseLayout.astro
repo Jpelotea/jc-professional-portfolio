@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/refinements.css';
 import '../styles/release.css';
+import '../styles/motion.css';
 import { site } from '../site.config';
 
 interface Props {
@@ -67,12 +68,22 @@ const jsonLd = {
         document.documentElement.dataset.theme = saved || preferred;
       })();
     </script>
+    <script is:inline>
+      (() => {
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const root = document.documentElement;
+        root.classList.add('motion-enabled');
+        window.__jcMotionFallback = window.setTimeout(() => {
+          if (!root.classList.contains('motion-ready')) root.classList.remove('motion-enabled');
+        }, 2500);
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
 
-    <div class="mobile-action-bar glass-panel" aria-label="Quick contact actions">
+    <div class="mobile-action-bar glass-panel" data-mobile-action-bar aria-label="Quick contact actions">
       <a class="button" href={`mailto:${site.email}`}>Email JC</a>
       <a class="button button--ghost" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
@@ -86,30 +97,116 @@ const jsonLd = {
     </dialog>
 
     <script is:inline>
+      const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const afterPaint = (callback) => {
+        let completed = false;
+        const run = () => {
+          if (completed) return;
+          completed = true;
+          callback();
+        };
+        requestAnimationFrame(run);
+        window.setTimeout(run, 64);
+      };
+      let mobileMenuTimer;
+      let lightboxTimer;
+
       const setMobileMenu = (open, restoreFocus = false) => {
         const menu = document.querySelector('[data-mobile-menu]');
         const toggle = document.querySelector('[data-mobile-menu-toggle]');
         if (!(menu instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
-        menu.hidden = !open;
+        window.clearTimeout(mobileMenuTimer);
         toggle.setAttribute('aria-expanded', String(open));
         toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+
         if (open) {
-          requestAnimationFrame(() => {
+          menu.hidden = false;
+          menu.removeAttribute('inert');
+          menu.dataset.state = reducedMotion() ? 'open' : 'opening';
+          afterPaint(() => {
+            menu.dataset.state = 'open';
             const firstLink = menu.querySelector('a');
             if (firstLink instanceof HTMLElement) firstLink.focus();
           });
-        } else if (restoreFocus) {
-          toggle.focus();
+          return;
+        }
+
+        if (menu.hidden) {
+          if (restoreFocus) toggle.focus();
+          return;
+        }
+
+        menu.dataset.state = 'closing';
+        if (menu.contains(document.activeElement)) toggle.focus({ preventScroll: true });
+        menu.setAttribute('inert', '');
+        const finishClose = () => {
+          menu.hidden = true;
+          menu.removeAttribute('data-state');
+          menu.removeAttribute('inert');
+          if (restoreFocus) toggle.focus();
+        };
+
+        if (reducedMotion()) finishClose();
+        else mobileMenuTimer = window.setTimeout(finishClose, 150);
+      };
+
+      const closeLightbox = () => {
+        const dialog = document.querySelector('[data-lightbox-dialog]');
+        if (!(dialog instanceof HTMLDialogElement) || !dialog.open || dialog.dataset.state === 'closing') return;
+        window.clearTimeout(lightboxTimer);
+        dialog.dataset.state = 'closing';
+        const finishClose = () => {
+          dialog.close();
+          dialog.removeAttribute('data-state');
+        };
+        if (reducedMotion()) finishClose();
+        else lightboxTimer = window.setTimeout(finishClose, 180);
+      };
+
+      const initMotion = () => {
+        const root = document.documentElement;
+        if (!root.classList.contains('motion-enabled')) return;
+
+        try {
+          const reveal = (element) => element.classList.add('is-visible');
+          const scrollItems = [...document.querySelectorAll('[data-motion]:not([data-motion="hero"]):not([data-motion="hero-card"])')];
+          const timeline = document.querySelector('[data-motion-timeline]');
+
+          if (!('IntersectionObserver' in window)) {
+            scrollItems.forEach(reveal);
+            if (timeline) timeline.classList.add('is-visible');
+          } else {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                reveal(entry.target);
+                observer.unobserve(entry.target);
+              });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+            scrollItems.forEach((item) => observer.observe(item));
+            if (timeline) observer.observe(timeline);
+          }
+
+          root.classList.add('motion-ready');
+          window.clearTimeout(window.__jcMotionFallback);
+          afterPaint(() => {
+            document.querySelectorAll('[data-motion="hero"], [data-motion="hero-card"]').forEach(reveal);
+            window.setTimeout(() => document.querySelector('[data-mobile-action-bar]')?.classList.add('is-visible'), 280);
+          });
+        } catch (error) {
+          root.classList.remove('motion-enabled', 'motion-ready');
         }
       };
+
+      initMotion();
 
       document.addEventListener('click', (event) => {
         if (!(event.target instanceof Element)) return;
 
         const menuToggle = event.target.closest('[data-mobile-menu-toggle]');
         if (menuToggle instanceof HTMLButtonElement) {
-          const menu = document.querySelector('[data-mobile-menu]');
-          const isOpen = menu instanceof HTMLElement && !menu.hidden;
+          const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
           setMobileMenu(!isOpen);
           return;
         }
@@ -140,28 +237,41 @@ const jsonLd = {
           const image = dialog?.querySelector('[data-lightbox-image]');
           const caption = dialog?.querySelector('[data-lightbox-caption]');
           if (dialog instanceof HTMLDialogElement && image instanceof HTMLImageElement && caption instanceof HTMLElement) {
+            window.clearTimeout(lightboxTimer);
             image.src = trigger.dataset.lightboxSrc || '';
             image.alt = trigger.dataset.lightboxAlt || '';
             caption.textContent = trigger.dataset.lightboxCaption || trigger.dataset.lightboxAlt || '';
             dialog.showModal();
+            dialog.dataset.state = reducedMotion() ? 'open' : 'opening';
+            afterPaint(() => { dialog.dataset.state = 'open'; });
           }
           return;
         }
 
         const close = event.target.closest('[data-lightbox-close]');
         if (close) {
-          const dialog = close.closest('dialog');
-          if (dialog instanceof HTMLDialogElement) dialog.close();
+          closeLightbox();
           return;
         }
 
         if (event.target instanceof HTMLDialogElement && event.target.matches('[data-lightbox-dialog]')) {
-          event.target.close();
+          closeLightbox();
         }
+      });
+
+      document.querySelector('[data-lightbox-dialog]')?.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        closeLightbox();
       });
 
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
+          const dialog = document.querySelector('[data-lightbox-dialog]');
+          if (dialog instanceof HTMLDialogElement && dialog.open) {
+            event.preventDefault();
+            closeLightbox();
+            return;
+          }
           const menu = document.querySelector('[data-mobile-menu]');
           if (menu instanceof HTMLElement && !menu.hidden) setMobileMenu(false, true);
         }
@@ -169,6 +279,12 @@ const jsonLd = {
 
       window.addEventListener('resize', () => {
         if (window.innerWidth > 980) setMobileMenu(false);
+      });
+
+      matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (event) => {
+        if (!event.matches) return;
+        document.documentElement.classList.remove('motion-enabled', 'motion-ready');
+        document.querySelectorAll('[data-motion], [data-motion-timeline], [data-mobile-action-bar]').forEach((element) => element.classList.add('is-visible'));
       });
     </script>
   </body>
