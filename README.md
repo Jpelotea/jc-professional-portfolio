@@ -1,30 +1,23 @@
-# JC Pelotea Professional Portfolio — V8
+# JC Professional Portfolio
 
-V8 is the deployment-readiness edition of the operations-led professional portfolio.
+Cloudflare Pages edition of JC Pelotea's professional portfolio.
 
 ## Positioning
-**Business Operations & Executive Support Specialist** — supported by workflow automation, documentation, digital operations, and marketing execution.
+**Business Operations & Executive Support Specialist** — supported by workflow automation, business documentation, digital operations, and marketing execution.
 
-## What V8 adds
-- Technical SEO and social-sharing metadata across all pages.
-- `Person` structured data on the homepage.
-- Progressive enhancement so portfolio content stays accessible without JavaScript.
-- Better mobile navigation keyboard behavior and lightbox focus handling.
-- Image dimensions and async decoding to reduce layout shift.
-- Stronger contact-conversion section built around real engagement types.
-- Higher-contrast and reduced-motion support.
-- `site.webmanifest`, `robots.txt`, custom `404.html`, and static-host security/cache headers.
-- Deployment checklist documenting the few items that depend on the final domain or approved contact assets.
+## Included
+- Responsive portfolio homepage
+- Six service areas with Business Operations as the anchor
+- Case studies for Avodah Wealth Advisory, OpenReady, ICE Zeta Group, and Konnevia
+- Privacy-safe composite proof images based on verified project screenshots
+- Live-work links, SEO metadata, structured data, security headers, manifest, and custom 404 page
 
-## Included pages
-- `index.html`
-- `projects/avodah.html`
-- `projects/openready.html`
-- `projects/ice-zeta.html`
-- `projects/konnevia.html`
-- `404.html`
+## Deploy on Cloudflare Pages
+- Production branch: `main`
+- Framework preset: None
+- Build command: leave blank
+- Build output directory: `/`
+- Root directory: `/`
+- Environment variables: none
 
-## Deployment
-Upload the entire folder to Netlify, Cloudflare Pages, GitHub Pages, or another static host. No build step is required.
-
-See `DEPLOYMENT-CHECKLIST.md` before attaching a custom domain.
+The site is static HTML/CSS/JS and requires no build process.
