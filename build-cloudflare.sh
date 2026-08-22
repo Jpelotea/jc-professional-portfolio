@@ -7,6 +7,9 @@ npm run build
 cp -R assets dist/assets
 cp favicon.svg site.webmanifest robots.txt _headers dist/
 
+# Generate conventional raster Open Graph cards from the version-controlled SVG sources.
+node scripts/generate-social-images.mjs
+
 # Cloudflare static-assets 404 handling expects a root 404.html file.
 cp 404.html dist/404.html
 
