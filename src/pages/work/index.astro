@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { projects } from '../../data/projects';
+---
+<BaseLayout
+  title="Selected Work | Joshua Carl Pelotea (JC)"
+  description="Selected case studies by Joshua Carl Pelotea (JC) across business operations, executive support, workflow systems, digital products, documentation, and campaign execution."
+  canonical="/work/"
+>
+  <Header />
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumbs"><a href="/">Home</a><span>/</span><span>Selected Work</span></div>
+        <p class="eyebrow">Portfolio</p>
+        <h1>Work that shows <span class="soft">structure, execution,</span> and follow-through.</h1>
+        <p class="lede">These case studies focus on the operating problem, the contribution, the documented deliverables, and what became clearer or more usable as a result.</p>
+      </div>
+    </section>
+    <section class="section--compact">
+      <div class="container project-grid">
+        {projects.map((project) => (
+          <a class="project-card" href={`/work/${project.slug}/`}>
+            <span class="project-index">{project.index}</span>
+            <div>
+              <small>{project.category}</small>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+            </div>
+            {project.image ? (
+              <div class="project-visual">
+                <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />
+              </div>
+            ) : project.slug === 'ice-zeta' ? (
+              <div class="project-visual project-visual--mockup project-visual--ice-zeta" aria-hidden="true">
+                <span class="mockup-kicker">Brand system</span>
+                <strong>ICE Zeta Group</strong>
+                <div class="mockup-chip-row"><span>Brand guidelines</span><span>Website</span><span>Content system</span></div>
+              </div>
+            ) : (
+              <div class="project-visual project-visual--mockup project-visual--konnevia" aria-hidden="true">
+                <span class="mockup-kicker">Product operations</span>
+                <strong>Konnevia</strong>
+                <div class="mockup-chip-row"><span>Profile</span><span>AI</span><span>Leads</span><span>Booking</span></div>
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

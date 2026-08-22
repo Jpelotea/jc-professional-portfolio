@@ -1,0 +1,42 @@
+---
+import { navigation, site } from '../site.config';
+---
+<header class="site-header">
+  <div class="container nav-shell glass-panel">
+    <a class="brand" href="/" aria-label={`${site.shortName} home`}>
+      <span class="brand-mark" aria-hidden="true">
+        <img class="brand-symbol brand-symbol--dark-bg" src="/assets/brand/jc-symbol-simplified-dark.svg" alt="" width="36" height="36" />
+        <img class="brand-symbol brand-symbol--light-bg" src="/assets/brand/jc-symbol-simplified-light.svg" alt="" width="36" height="36" />
+      </span>
+      <span class="brand-copy"><strong>{site.shortName}</strong><small>{site.compactRole}</small></span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">◐</button>
+      <a class="button button--small nav-work-cta" href="/#contact">Work with JC</a>
+      <button
+        class="icon-button mobile-menu-toggle"
+        type="button"
+        data-mobile-menu-toggle
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
+      >
+        <span class="mobile-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="container mobile-menu-wrap">
+    <div id="mobile-menu" class="mobile-menu glass-panel" data-mobile-menu hidden>
+      <nav aria-label="Mobile navigation">
+        {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a class="mobile-menu__cta" href="/#contact">Work with JC</a>
+      </nav>
+    </div>
+  </div>
+</header>
