@@ -24,6 +24,14 @@ export const navigation = [
   { label: 'Capabilities', href: '/#capabilities' },
   { label: 'Work', href: '/work/' },
   { label: 'Experience', href: '/#experience' },
-  { label: 'About', href: '/about/' },
-  { label: 'Contact', href: '/#contact' }
+  { label: 'About', href: '/about/' }
+] as const;
+
+export const coreTools = [
+  'Google Workspace',
+  'Google Sheets',
+  'Apps Script',
+  'GitHub',
+  'Netlify',
+  'Canva'
 ] as const;
