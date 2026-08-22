@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { projects } from '../data/projects';
-import { site } from '../site.config';
+import { coreTools, site } from '../site.config';
 
 const capabilities = [
   ['01 · Core', 'Business Operations', 'Administrative coordination, operational support, reporting, task management, workflow organization, and day-to-day execution.'],
@@ -59,6 +59,18 @@ const experience = [
       </div>
     </section>
 
+    <section class="tool-strip" aria-labelledby="tools-heading">
+      <div class="container tool-strip__inner">
+        <div>
+          <p class="eyebrow" id="tools-heading">Core tools</p>
+          <p>Platforms used across documented operations, automation, digital, and campaign work.</p>
+        </div>
+        <div class="tool-badges" aria-label="Core software stack">
+          {coreTools.map((tool) => <span>{tool}</span>)}
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="capabilities">
       <div class="container">
         <div class="section-heading">
@@ -85,17 +97,40 @@ const experience = [
         </div>
         <div class="project-grid">
           {projects.map((project) => (
-            <a class="project-card" href={`/work/${project.slug}/`}>
+            <article class="project-card">
               <span class="project-index">{project.index}</span>
-              <div>
+              <a class="project-card__copy" href={`/work/${project.slug}/`}>
                 <small>{project.category}</small>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
-              </div>
-              <div class:list={['project-visual', !project.image && 'project-visual--abstract']}>
-                {project.image && <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />}
-              </div>
-            </a>
+                <span class="project-card__cta">View case study →</span>
+              </a>
+              {project.image ? (
+                <button
+                  class="project-visual project-visual--button"
+                  type="button"
+                  data-lightbox-src={project.image}
+                  data-lightbox-alt={project.imageAlt || ''}
+                  data-lightbox-caption={`${project.title} — portfolio evidence preview`}
+                  aria-label={`Enlarge ${project.title} preview`}
+                >
+                  <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />
+                  <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+                </button>
+              ) : project.slug === 'ice-zeta' ? (
+                <a class="project-visual project-visual--mockup project-visual--ice-zeta" href={`/work/${project.slug}/`} aria-label="View ICE Zeta Group case study">
+                  <span class="mockup-kicker">Brand system</span>
+                  <strong>ICE Zeta Group</strong>
+                  <div class="mockup-chip-row"><span>Brand guidelines</span><span>Website</span><span>Content system</span></div>
+                </a>
+              ) : (
+                <a class="project-visual project-visual--mockup project-visual--konnevia" href={`/work/${project.slug}/`} aria-label="View Konnevia case study">
+                  <span class="mockup-kicker">Product operations</span>
+                  <strong>Konnevia</strong>
+                  <div class="mockup-chip-row"><span>Profile</span><span>AI</span><span>Leads</span><span>Booking</span></div>
+                </a>
+              )}
+            </article>
           ))}
         </div>
       </div>
@@ -105,15 +140,35 @@ const experience = [
       <div class="container">
         <div class="section-heading">
           <div><p class="eyebrow">Proof of work</p><h2>Real artifacts, condensed for fast review.</h2></div>
-          <p>Public previews use verified project screenshots and avoid applicant-level personal data, sensitive internal identifiers, and unsupported claims.</p>
+          <p>Public previews use verified project screenshots and avoid applicant-level personal data, sensitive internal identifiers, and unsupported claims. Select an image to inspect it at a larger size.</p>
         </div>
         <div class="proof-grid">
           <figure class="proof-card">
-            <img src="/assets/avodah-ops.webp" alt="Composite of Avodah operations dashboards and workflow systems" loading="lazy" />
+            <button
+              class="proof-media"
+              type="button"
+              data-lightbox-src="/assets/avodah-ops.webp"
+              data-lightbox-alt="Composite of Avodah operations dashboards and workflow systems"
+              data-lightbox-caption="Avodah operations systems — dashboards, workflow architecture, recruitment, activity monitoring, and calendar coordination"
+              aria-label="Enlarge Avodah operations systems preview"
+            >
+              <img src="/assets/avodah-ops.webp" alt="Composite of Avodah operations dashboards and workflow systems" loading="lazy" />
+              <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+            </button>
             <figcaption><strong>Operations systems</strong><span>Workflow architecture, dashboards, recruitment, activity monitoring, and calendar coordination.</span></figcaption>
           </figure>
           <figure class="proof-card">
-            <img src="/assets/avodah-creative.webp" alt="Composite of Avodah campaign and financial education graphics" loading="lazy" />
+            <button
+              class="proof-media"
+              type="button"
+              data-lightbox-src="/assets/avodah-creative.webp"
+              data-lightbox-alt="Composite of Avodah campaign and financial education graphics"
+              data-lightbox-caption="Avodah campaign execution — audience-specific financial education, protection, consultation, and brand assets"
+              aria-label="Enlarge Avodah campaign execution preview"
+            >
+              <img src="/assets/avodah-creative.webp" alt="Composite of Avodah campaign and financial education graphics" loading="lazy" />
+              <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+            </button>
             <figcaption><strong>Campaign execution</strong><span>Audience-specific financial education, protection, consultation, and brand assets.</span></figcaption>
           </figure>
         </div>
@@ -151,6 +206,7 @@ const experience = [
             <a class="button button--ghost" href={site.social.messenger} target="_blank" rel="noopener">Messenger ↗</a>
             <a class="button button--ghost" href={site.social.freelancer} target="_blank" rel="noopener">Freelancer ↗</a>
           </div>
+          <p class="contact-secondary">Also available on <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>, <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>, and <a href={site.social.viber}>Viber</a>.</p>
         </div>
       </div>
     </section>
