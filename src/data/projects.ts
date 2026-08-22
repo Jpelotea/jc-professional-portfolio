@@ -16,6 +16,7 @@ export type Project = {
   live?: string;
   liveLabel?: string;
   liveNote?: string;
+  evidenceNote?: string;
   github?: string;
   featured?: boolean;
 };
@@ -25,38 +26,41 @@ export const projects: Project[] = [
     slug: 'avodah',
     index: '01',
     title: 'Avodah Wealth Advisory',
-    category: 'Business Operations · Executive Support · Digital Operations',
+    category: 'Website Design & Development · Content Architecture · Digital Experience',
     summary:
-      'A multi-layer operations engagement spanning dashboards, recruitment coordination, executive support, documentation, website operations, and campaign execution.',
+      'A multi-page advisory website I designed and built to explain Avodah’s services clearly, guide different client audiences, and turn interest into needs-check and consultation inquiries.',
     challenge:
-      'The business needed stronger operating visibility and consistency across recurring administrative work, recruitment, client workflows, calendars, reporting, documentation, and digital execution.',
+      'Avodah needed a credible public website that could present a broad mix of advisory services without confusing visitors or implying that the company directly lends, underwrites, or approves products. The experience also needed clear pathways for families, OFWs, seafarers, professionals, and business owners.',
     approach:
-      'I treated the work as an operating system rather than a collection of isolated tasks: centralize information, clarify ownership, standardize recurring workflows, and build practical reporting and documentation around the day-to-day business.',
+      'I organized the site around visitor intent: understand what Avodah does, identify the relevant service, complete a short needs check, and request a consultation. I paired a consistent visual system with plain-language service explanations, responsive layouts, and compliance-conscious disclosures.',
     contributions: [
-      'Designed and implemented automated Google Sheets and Apps Script operations dashboards.',
-      'Structured appointment-setter, recruitment, calendar, reporting, and lead-management workflows.',
-      'Developed SOPs, proposals, service agreements, internal references, and knowledge-base materials.',
-      'Supported website structure, content, intake functionality, GitHub version control, and Netlify deployment.',
-      'Developed marketing strategy, audience-specific content systems, and campaign creative.'
+      'Planned and built the multi-page website structure, responsive interface, navigation, and visual system.',
+      'Wrote and organized audience-specific service content for protection, loans, travel, and business-support pathways.',
+      'Created the free needs-check and consultation journeys, including inquiry forms and clear calls to action.',
+      'Added supporting trust content such as FAQs, provider disclosures, privacy information, terms, and disclaimers.',
+      'Managed version control, deployment, production QA, and ongoing website updates through GitHub and Netlify.'
     ],
     deliverables: [
-      'Operations hub and management dashboards',
-      'Recruitment and appointment-setter systems',
-      'Calendar and reporting workflows',
-      'SOPs and business documentation',
-      'Website operations and deployment support',
-      '30-day content strategy and campaign creative'
+      'Responsive multi-page company website',
+      'Audience and service landing pages',
+      'Free needs-check flow and planning guides',
+      'Consultation inquiry form',
+      'FAQs and compliance disclosures',
+      'Privacy, terms, and disclaimer pages',
+      'GitHub and Netlify deployment workflow'
     ],
     outcome:
-      'The engagement created a clearer operating foundation with centralized tracking, repeatable workflows, structured documentation, and stronger visibility across recurring business activities.',
-    tools: ['Google Workspace', 'Google Sheets', 'Apps Script', 'GitHub', 'Netlify', 'Canva', 'ChatGPT', 'Google Gemini'],
-    image: '/assets/avodah-ops-proof.webp',
-    imageAlt: 'Composite of selected Avodah operations dashboards and workflow system screenshots',
-    socialImage: '/assets/avodah-ops.png',
+      'The finished website gives Avodah a coherent public-facing presence with clearer service navigation, audience-specific guidance, stronger trust signals, and direct paths from discovery to inquiry.',
+    tools: ['HTML', 'CSS', 'JavaScript', 'GitHub', 'Netlify', 'Google Analytics'],
+    image: '/assets/avodah-website-proof.webp',
+    imageAlt: 'Homepage of the Avodah Wealth Advisory website designed and built by JC Pelotea',
+    socialImage: '/assets/avodah-website.png',
     live: 'https://avodahwealthadvisory.netlify.app/',
     liveLabel: 'View Avodah website ↗',
     liveNote:
-      'The public website represents one digital-operations deliverable. The broader operations work in this case study is demonstrated through the dashboards, workflow systems, documentation, and portfolio evidence shown here.',
+      'Live project — explore the published service pages, needs-check flow, planning guides, FAQs, consultation form, and responsive experience.',
+    evidenceNote:
+      'The live website is the primary public artifact. Screenshots and descriptions focus on the published experience; private client and business information is excluded.',
     featured: true
   },
   {

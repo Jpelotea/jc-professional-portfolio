@@ -36,8 +36,8 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
             type="button"
             data-lightbox-src={project.image}
             data-lightbox-alt={project.imageAlt || ''}
-            data-lightbox-caption={`${project.title} — portfolio evidence preview`}
-            aria-label={`View larger ${project.title} portfolio preview`}
+            data-lightbox-caption={project.imageAlt || `${project.title} — project preview`}
+            aria-label={`View larger ${project.title} preview`}
           >
             <img src={project.image} alt={project.imageAlt || ''} />
             <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
@@ -52,27 +52,27 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
       <div class="container">
         <article class="case-section">
           <aside>01 · Context</aside>
-          <div class="content"><h2>The operational challenge</h2><p>{project.challenge}</p></div>
+          <div class="content"><h2>The challenge</h2><p>{project.challenge}</p></div>
         </article>
         <article class="case-section">
           <aside>02 · Approach</aside>
-          <div class="content"><h2>How the work was structured</h2><p>{project.approach}</p></div>
+          <div class="content"><h2>The approach</h2><p>{project.approach}</p></div>
         </article>
         <article class="case-section">
           <aside>03 · Contribution</aside>
-          <div class="content"><h2>Selected contributions</h2><ul class="clean-list">{project.contributions.map((item) => <li>{item}</li>)}</ul></div>
+          <div class="content"><h2>What I contributed</h2><ul class="clean-list">{project.contributions.map((item) => <li>{item}</li>)}</ul></div>
         </article>
         <article class="case-section">
           <aside>04 · Evidence</aside>
-          <div class="content"><h2>Documented deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>Public evidence focuses on publishable artifacts and selected deliverables while confidential business information and applicant-level personal data remain private.</p></div>
+          <div class="content"><h2>Key deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>{project.evidenceNote || 'Public evidence focuses on publishable artifacts and selected deliverables while confidential business information and applicant-level personal data remain private.'}</p></div>
         </article>
         <article class="case-section">
           <aside>05 · Outcome</aside>
-          <div class="content"><h2>What changed</h2><p>{project.outcome}</p></div>
+          <div class="content"><h2>The result</h2><p>{project.outcome}</p></div>
         </article>
         <article class="case-section">
           <aside>06 · Environment</aside>
-          <div class="content"><h2>Tools & operating environment</h2><ul class="pill-list">{project.tools.map((tool) => <li>{tool}</li>)}</ul></div>
+          <div class="content"><h2>Tools used</h2><ul class="pill-list">{project.tools.map((tool) => <li>{tool}</li>)}</ul></div>
         </article>
       </div>
     </section>

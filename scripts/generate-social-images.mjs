@@ -3,7 +3,8 @@ import sharp from 'sharp';
 const svgCards = ['og-default', 'og-ice-zeta', 'og-konnevia', 'openready'];
 const proofCards = [
   { source: 'avodah-ops-proof', socialName: 'avodah-ops', background: '#0b1118' },
-  { source: 'avodah-creative-proof', socialName: 'avodah-creative', background: '#f7f4ee' }
+  { source: 'avodah-creative-proof', socialName: 'avodah-creative', background: '#f7f4ee' },
+  { source: 'avodah-website-proof', socialName: 'avodah-website', background: '#0b3f28' }
 ];
 
 await Promise.all(
