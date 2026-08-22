@@ -5,6 +5,7 @@ import process from 'node:process';
 const distRoot = path.resolve('dist');
 const cloudflareToken = process.env.CF_WEB_ANALYTICS_TOKEN?.trim() || '';
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim() || '';
+const eventClientSrc = '/assets/analytics-events.js';
 const htmlFiles = [];
 
 async function walk(directory) {
@@ -33,6 +34,7 @@ assertToken('GOOGLE_SITE_VERIFICATION', googleVerification, /^[A-Za-z0-9._-]{8,2
 
 await walk(distRoot);
 
+let eventClientPages = 0;
 let cloudflarePages = 0;
 let googlePages = 0;
 
@@ -40,6 +42,12 @@ for (const htmlFile of htmlFiles) {
   let html = await readFile(htmlFile, 'utf8');
   let changed = false;
   const additions = [];
+
+  if (!html.includes(eventClientSrc)) {
+    additions.push(`<script src="${eventClientSrc}" defer></script>`);
+    eventClientPages += 1;
+    changed = true;
+  }
 
   if (cloudflareToken && !html.includes('<!-- Cloudflare Web Analytics -->')) {
     const beaconConfig = JSON.stringify({ token: cloudflareToken });
@@ -63,6 +71,8 @@ for (const htmlFile of htmlFiles) {
     await writeFile(htmlFile, html);
   }
 }
+
+console.log(`Injected first-party CTA event client into ${eventClientPages} HTML page${eventClientPages === 1 ? '' : 's'}.`);
 
 if (cloudflareToken) console.log(`Injected Cloudflare Web Analytics into ${cloudflarePages} HTML page${cloudflarePages === 1 ? '' : 's'}.`);
 else console.log('CF_WEB_ANALYTICS_TOKEN is not set; Cloudflare Web Analytics injection skipped.');
