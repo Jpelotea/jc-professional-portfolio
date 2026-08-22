@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "check:links": "node scripts/check-internal-links.mjs",
+    "report:build": "node scripts/report-build-baseline.mjs"
   },
   "engines": {
     "node": ">=22.12"
