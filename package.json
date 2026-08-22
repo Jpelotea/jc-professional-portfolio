@@ -15,7 +15,7 @@
     "report:build": "node scripts/report-build-baseline.mjs"
   },
   "engines": {
-    "node": ">=22.12"
+    "node": ">=22.19.0"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
