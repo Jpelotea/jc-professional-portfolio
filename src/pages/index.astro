@@ -93,7 +93,7 @@ const experience = [
       <div class="container">
         <div class="section-heading">
           <div><p class="eyebrow">Selected work</p><h2>Systems, execution, and proof—not a list of tasks.</h2></div>
-          <p>Case studies describe documented contributions and outputs without inventing performance metrics or overstating technical ownership.</p>
+          <p>Case studies focus on documented contributions, deliverables, operating outcomes, and the systems used to support the work.</p>
         </div>
         <div class="project-grid">
           {projects.map((project) => (
@@ -112,23 +112,23 @@ const experience = [
                   data-lightbox-src={project.image}
                   data-lightbox-alt={project.imageAlt || ''}
                   data-lightbox-caption={`${project.title} — portfolio evidence preview`}
-                  aria-label={`Enlarge ${project.title} preview`}
+                  aria-label={`View larger ${project.title} preview`}
                 >
                   <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />
-                  <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+                  <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
                 </button>
               ) : project.slug === 'ice-zeta' ? (
-                <a class="project-visual project-visual--mockup project-visual--ice-zeta" href={`/work/${project.slug}/`} aria-label="View ICE Zeta Group case study">
+                <div class="project-visual project-visual--mockup project-visual--ice-zeta" aria-hidden="true">
                   <span class="mockup-kicker">Brand system</span>
                   <strong>ICE Zeta Group</strong>
                   <div class="mockup-chip-row"><span>Brand guidelines</span><span>Website</span><span>Content system</span></div>
-                </a>
+                </div>
               ) : (
-                <a class="project-visual project-visual--mockup project-visual--konnevia" href={`/work/${project.slug}/`} aria-label="View Konnevia case study">
+                <div class="project-visual project-visual--mockup project-visual--konnevia" aria-hidden="true">
                   <span class="mockup-kicker">Product operations</span>
                   <strong>Konnevia</strong>
                   <div class="mockup-chip-row"><span>Profile</span><span>AI</span><span>Leads</span><span>Booking</span></div>
-                </a>
+                </div>
               )}
             </article>
           ))}
@@ -140,7 +140,7 @@ const experience = [
       <div class="container">
         <div class="section-heading">
           <div><p class="eyebrow">Proof of work</p><h2>Real artifacts, condensed for fast review.</h2></div>
-          <p>Public previews use verified project screenshots and avoid applicant-level personal data, sensitive internal identifiers, and unsupported claims. Select an image to inspect it at a larger size.</p>
+          <p>Public previews focus on publishable project artifacts and selected evidence. Select an image to inspect it at a larger size.</p>
         </div>
         <div class="proof-grid">
           <figure class="proof-card">
@@ -150,10 +150,10 @@ const experience = [
               data-lightbox-src="/assets/avodah-ops.webp"
               data-lightbox-alt="Composite of Avodah operations dashboards and workflow systems"
               data-lightbox-caption="Avodah operations systems — dashboards, workflow architecture, recruitment, activity monitoring, and calendar coordination"
-              aria-label="Enlarge Avodah operations systems preview"
+              aria-label="View larger Avodah operations systems preview"
             >
               <img src="/assets/avodah-ops.webp" alt="Composite of Avodah operations dashboards and workflow systems" loading="lazy" />
-              <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+              <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
             </button>
             <figcaption><strong>Operations systems</strong><span>Workflow architecture, dashboards, recruitment, activity monitoring, and calendar coordination.</span></figcaption>
           </figure>
@@ -164,10 +164,10 @@ const experience = [
               data-lightbox-src="/assets/avodah-creative.webp"
               data-lightbox-alt="Composite of Avodah campaign and financial education graphics"
               data-lightbox-caption="Avodah campaign execution — audience-specific financial education, protection, consultation, and brand assets"
-              aria-label="Enlarge Avodah campaign execution preview"
+              aria-label="View larger Avodah campaign execution preview"
             >
               <img src="/assets/avodah-creative.webp" alt="Composite of Avodah campaign and financial education graphics" loading="lazy" />
-              <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+              <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
             </button>
             <figcaption><strong>Campaign execution</strong><span>Audience-specific financial education, protection, consultation, and brand assets.</span></figcaption>
           </figure>
@@ -202,11 +202,10 @@ const experience = [
           <div class="contact-links">
             <a class="button" href={`mailto:${site.email}`}>Email JC</a>
             <a class="button button--ghost" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a class="button button--ghost" href={site.social.whatsapp} target="_blank" rel="noopener">WhatsApp ↗</a>
-            <a class="button button--ghost" href={site.social.messenger} target="_blank" rel="noopener">Messenger ↗</a>
             <a class="button button--ghost" href={site.social.freelancer} target="_blank" rel="noopener">Freelancer ↗</a>
+            <a class="button button--ghost" href={site.social.github} target="_blank" rel="noopener">GitHub ↗</a>
           </div>
-          <p class="contact-secondary">Also available on <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>, <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>, and <a href={site.social.viber}>Viber</a>.</p>
+          <p class="contact-secondary">Direct messaging: <a href={site.social.whatsapp} target="_blank" rel="noopener">WhatsApp</a> · <a href={site.social.messenger} target="_blank" rel="noopener">Messenger</a> · <a href={site.social.viber}>Viber</a>. Social profile: <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>.</p>
         </div>
       </div>
     </section>
