@@ -41,8 +41,8 @@
 .home-title {
   max-width: 12.5ch;
   font-size: clamp(3.6rem, 5.6vw, 6rem);
-  line-height: .93;
-  letter-spacing: -.065em;
+  line-height: .94;
+  letter-spacing: -.04em;
   margin-bottom: 1.05rem;
 }
 
@@ -76,7 +76,7 @@
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: .11em;
-  font: 700 .65rem ui-monospace, monospace;
+  font: 700 .65rem var(--font-system);
 }
 
 .identity-card--home blockquote {
@@ -187,6 +187,7 @@
   color: var(--text);
   padding: .5rem .78rem;
   font-size: .78rem;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -270,7 +271,7 @@
 
 .mockup-kicker {
   color: var(--accent-2);
-  font: 750 .64rem ui-monospace, monospace;
+  font: 750 .64rem var(--font-system);
   text-transform: uppercase;
   letter-spacing: .12em;
 }
