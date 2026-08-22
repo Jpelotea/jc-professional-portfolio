@@ -113,7 +113,7 @@ export const projects: Project[] = [
     outcome:
       'The project established a more coherent brand and repeatable communications system for future recruitment and marketing activity.',
     tools: ['Brand documentation', 'Content planning', 'Wix', 'Google Workspace', 'AI-assisted content systems'],
-    image: '/assets/ice-zeta-website-2026-08.png',
+    image: '/assets/ice-zeta-website-2026-08.webp',
     imageAlt: 'ICE Zeta Group website homepage featuring its leadership and career-development message',
     socialImage: '/assets/og-ice-zeta.png',
     live: 'https://jcpelotea.wixsite.com/zeta',
