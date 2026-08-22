@@ -32,6 +32,7 @@ export const coreTools = [
   'Google Sheets',
   'Apps Script',
   'GitHub',
+  'Cloudflare',
   'Netlify',
   'Canva'
 ] as const;
