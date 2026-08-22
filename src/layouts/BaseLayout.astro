@@ -79,7 +79,7 @@ const jsonLd = {
       })();
     </script>
   </head>
-  <body>
+  <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
 
@@ -87,6 +87,12 @@ const jsonLd = {
       <a class="button" href={`mailto:${site.email}`}>Email JC</a>
       <a class="button button--ghost" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
+
+    <a class="back-to-top glass-panel" href="#top" data-back-to-top aria-label="Back to top" title="Back to top">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m6.5 10 5.5-5.5 5.5 5.5M12 5v14.5" />
+      </svg>
+    </a>
 
     <dialog class="lightbox-dialog" data-lightbox-dialog aria-label="Expanded portfolio image">
       <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image preview">×</button>
@@ -110,6 +116,7 @@ const jsonLd = {
       };
       let mobileMenuTimer;
       let lightboxTimer;
+      let backToTopFrame;
 
       const setMobileMenu = (open, restoreFocus = false) => {
         const menu = document.querySelector('[data-mobile-menu]');
@@ -201,8 +208,29 @@ const jsonLd = {
 
       initMotion();
 
+      const updateBackToTop = () => {
+        backToTopFrame = undefined;
+        const control = document.querySelector('[data-back-to-top]');
+        if (!(control instanceof HTMLElement)) return;
+        const threshold = Math.max(560, window.innerHeight * .75);
+        control.classList.toggle('is-visible', window.scrollY > threshold);
+      };
+
+      updateBackToTop();
+      window.addEventListener('scroll', () => {
+        if (backToTopFrame) return;
+        backToTopFrame = requestAnimationFrame(updateBackToTop);
+      }, { passive: true });
+
       document.addEventListener('click', (event) => {
         if (!(event.target instanceof Element)) return;
+
+        const backToTop = event.target.closest('[data-back-to-top]');
+        if (backToTop instanceof HTMLAnchorElement) {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' });
+          return;
+        }
 
         const menuToggle = event.target.closest('[data-mobile-menu-toggle]');
         if (menuToggle instanceof HTMLButtonElement) {

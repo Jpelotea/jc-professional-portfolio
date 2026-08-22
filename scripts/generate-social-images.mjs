@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 
-const cards = ['og-default', 'og-ice-zeta', 'og-konnevia'];
+const cards = ['og-default', 'og-ice-zeta', 'og-konnevia', 'avodah-ops', 'avodah-creative', 'openready'];
 
 await Promise.all(
   cards.map(async (name) => {

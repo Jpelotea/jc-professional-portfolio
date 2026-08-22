@@ -50,9 +50,9 @@ export const projects: Project[] = [
     outcome:
       'The engagement created a clearer operating foundation with centralized tracking, repeatable workflows, structured documentation, and stronger visibility across recurring business activities.',
     tools: ['Google Workspace', 'Google Sheets', 'Apps Script', 'GitHub', 'Netlify', 'Canva', 'ChatGPT', 'Google Gemini'],
-    image: '/assets/avodah-ops.webp',
-    imageAlt: 'Composite of Avodah operations dashboards and workflow systems',
-    socialImage: '/assets/avodah-ops.webp',
+    image: '/assets/avodah-ops.svg',
+    imageAlt: 'Controlled composite of Avodah operations dashboards and workflow systems',
+    socialImage: '/assets/avodah-ops.png',
     live: 'https://avodahwealthadvisory.netlify.app/',
     liveLabel: 'View Avodah website ↗',
     liveNote:
@@ -80,9 +80,9 @@ export const projects: Project[] = [
     outcome:
       'OpenReady became a public, inspectable product with a clearer assessment workflow and transparent release path.',
     tools: ['Astro', 'JavaScript', 'GitHub', 'Netlify', 'Documentation systems'],
-    image: '/assets/openready.webp',
-    imageAlt: 'Composite of OpenReady homepage, assessment workspace, and roadmap',
-    socialImage: '/assets/openready.webp',
+    image: '/assets/openready.svg',
+    imageAlt: 'Controlled composite of the OpenReady assessment workspace and roadmap',
+    socialImage: '/assets/openready.png',
     live: 'https://getopenready.netlify.app',
     liveLabel: 'Open live product ↗',
     github: 'https://github.com/Jpelotea/openready',

@@ -39,3 +39,6 @@ jobs:
           test -f dist/assets/og-default.png
           test -f dist/assets/og-ice-zeta.png
           test -f dist/assets/og-konnevia.png
+          test -f dist/assets/avodah-ops.png
+          test -f dist/assets/avodah-creative.png
+          test -f dist/assets/openready.png

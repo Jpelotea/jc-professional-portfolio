@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 630" role="img" aria-labelledby="title desc">
+  <title id="title">Avodah operations systems controlled composite</title>
+  <desc id="desc">A polished dashboard-style composite showing operating metrics, recruitment workflow, activity monitoring, and calendar coordination.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111922"/>
+      <stop offset="1" stop-color="#172a2b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8bbd3a"/>
+      <stop offset="1" stop-color="#d8ab35"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#020609" flood-opacity=".32"/>
+    </filter>
+  </defs>
+  <rect width="1120" height="630" fill="url(#bg)"/>
+  <circle cx="1040" cy="-10" r="220" fill="#8bbd3a" opacity=".07"/>
+  <circle cx="1020" cy="640" r="280" fill="#d8ab35" opacity=".05"/>
+
+  <g filter="url(#shadow)">
+    <rect x="52" y="46" width="1016" height="538" rx="28" fill="#f8faf8"/>
+    <rect x="52" y="46" width="154" height="538" rx="28" fill="#152124"/>
+    <rect x="180" y="46" width="26" height="538" fill="#152124"/>
+  </g>
+
+  <g transform="translate(78 76)">
+    <path d="M18 3 34 32H2Z" fill="#8bbd3a"/>
+    <path d="m18 11 8 15H10Z" fill="#f4c247"/>
+    <text x="44" y="19" fill="#fff" font-family="Arial, sans-serif" font-size="16" font-weight="700">AVODAH</text>
+    <text x="44" y="35" fill="#a9b8b5" font-family="Arial, sans-serif" font-size="8" letter-spacing="1.6">OPERATIONS HUB</text>
+  </g>
+  <g fill="#aab8b6" font-family="Arial, sans-serif" font-size="12">
+    <rect x="70" y="142" width="118" height="42" rx="10" fill="#243438"/>
+    <circle cx="89" cy="163" r="5" fill="#9bc446"/>
+    <text x="104" y="168" fill="#fff" font-weight="700">Overview</text>
+    <circle cx="89" cy="216" r="5" fill="#5e7778"/><text x="104" y="220">Leads</text>
+    <circle cx="89" cy="262" r="5" fill="#5e7778"/><text x="104" y="266">Recruitment</text>
+    <circle cx="89" cy="308" r="5" fill="#5e7778"/><text x="104" y="312">Calendar</text>
+    <circle cx="89" cy="354" r="5" fill="#5e7778"/><text x="104" y="358">Reporting</text>
+  </g>
+  <g transform="translate(78 514)">
+    <circle cx="18" cy="18" r="18" fill="#31484a"/>
+    <text x="18" y="23" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="13" font-weight="700">JC</text>
+    <text x="46" y="15" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="700">Operations</text>
+    <text x="46" y="31" fill="#8fa3a1" font-family="Arial, sans-serif" font-size="9">System owner</text>
+  </g>
+
+  <g font-family="Arial, sans-serif">
+    <text x="246" y="91" fill="#172226" font-size="21" font-weight="700">Business operations overview</text>
+    <text x="246" y="116" fill="#708080" font-size="11">Centralized visibility across leads, appointments, recruitment, and recurring work</text>
+    <rect x="946" y="73" width="82" height="32" rx="16" fill="#eef3e8"/>
+    <circle cx="964" cy="89" r="4" fill="#78ac29"/>
+    <text x="976" y="93" fill="#45641a" font-size="10" font-weight="700">LIVE</text>
+
+    <g transform="translate(246 145)">
+      <g>
+        <rect width="176" height="92" rx="15" fill="#edf4ec" stroke="#dbe5d8"/>
+        <text x="18" y="27" fill="#687675" font-size="10" letter-spacing="1">ACTIVE LEADS</text>
+        <text x="18" y="62" fill="#142124" font-size="28" font-weight="700">184</text>
+        <text x="114" y="62" fill="#5c8b1f" font-size="10" font-weight="700">+12.4%</text>
+      </g>
+      <g transform="translate(192)">
+        <rect width="176" height="92" rx="15" fill="#f7f3e8" stroke="#e9e0c7"/>
+        <text x="18" y="27" fill="#756f63" font-size="10" letter-spacing="1">APPOINTMENTS</text>
+        <text x="18" y="62" fill="#142124" font-size="28" font-weight="700">47</text>
+        <text x="117" y="62" fill="#9b741c" font-size="10" font-weight="700">THIS WEEK</text>
+      </g>
+      <g transform="translate(384)">
+        <rect width="176" height="92" rx="15" fill="#edf2f4" stroke="#d9e2e5"/>
+        <text x="18" y="27" fill="#687675" font-size="10" letter-spacing="1">RECRUITMENT</text>
+        <text x="18" y="62" fill="#142124" font-size="28" font-weight="700">23</text>
+        <text x="112" y="62" fill="#3f7176" font-size="10" font-weight="700">IN PIPELINE</text>
+      </g>
+      <g transform="translate(576)">
+        <rect width="176" height="92" rx="15" fill="#f4eff4" stroke="#e4dbe4"/>
+        <text x="18" y="27" fill="#746977" font-size="10" letter-spacing="1">TASK HEALTH</text>
+        <text x="18" y="62" fill="#142124" font-size="28" font-weight="700">92%</text>
+        <text x="119" y="62" fill="#74597a" font-size="10" font-weight="700">ON TRACK</text>
+      </g>
+    </g>
+
+    <g transform="translate(246 257)">
+      <rect width="472" height="279" rx="18" fill="#fff" stroke="#dfe6e3"/>
+      <text x="20" y="31" fill="#1a2629" font-size="13" font-weight="700">Activity and appointment trend</text>
+      <text x="20" y="51" fill="#7b8887" font-size="9">Weekly operating view</text>
+      <g stroke="#e9eeec" stroke-width="1">
+        <path d="M42 87H446M42 127H446M42 167H446M42 207H446"/>
+      </g>
+      <path d="M42 191 C82 180 94 132 137 148 S203 116 244 128 305 77 348 101 407 72 446 82" fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M42 214 C88 207 101 185 146 191 S215 167 255 178 318 135 363 151 417 128 446 133" fill="none" stroke="#5d8587" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 7"/>
+      <g fill="#7d8988" font-size="8">
+        <text x="42" y="241">MON</text><text x="107" y="241">TUE</text><text x="172" y="241">WED</text><text x="237" y="241">THU</text><text x="302" y="241">FRI</text><text x="367" y="241">SAT</text><text x="430" y="241">SUN</text>
+      </g>
+    </g>
+
+    <g transform="translate(738 257)">
+      <rect width="290" height="132" rx="18" fill="#fff" stroke="#dfe6e3"/>
+      <text x="18" y="28" fill="#1a2629" font-size="13" font-weight="700">Recruitment workflow</text>
+      <g transform="translate(18 50)">
+        <rect width="76" height="48" rx="10" fill="#eff5e9"/><text x="38" y="21" text-anchor="middle" fill="#527922" font-size="9" font-weight="700">SCREENED</text><text x="38" y="38" text-anchor="middle" fill="#1e2b2d" font-size="14" font-weight="700">14</text>
+        <path d="M84 24h14" stroke="#abb7b5" stroke-width="2"/>
+        <rect x="106" width="76" height="48" rx="10" fill="#f8f2e5"/><text x="144" y="21" text-anchor="middle" fill="#8a6720" font-size="9" font-weight="700">INTERVIEW</text><text x="144" y="38" text-anchor="middle" fill="#1e2b2d" font-size="14" font-weight="700">6</text>
+        <path d="M190 24h14" stroke="#abb7b5" stroke-width="2"/>
+        <rect x="212" width="42" height="48" rx="10" fill="#edf2f4"/><text x="233" y="21" text-anchor="middle" fill="#486f73" font-size="8" font-weight="700">HIRED</text><text x="233" y="38" text-anchor="middle" fill="#1e2b2d" font-size="14" font-weight="700">3</text>
+      </g>
+    </g>
+
+    <g transform="translate(738 405)">
+      <rect width="290" height="131" rx="18" fill="#18282a"/>
+      <text x="18" y="27" fill="#fff" font-size="13" font-weight="700">Calendar coordination</text>
+      <text x="250" y="27" fill="#a9c881" font-size="9" font-weight="700">AUG 22</text>
+      <g transform="translate(18 46)" font-size="9">
+        <rect width="254" height="23" rx="7" fill="#263b3e"/><text x="10" y="16" fill="#a8bbb9">09:30</text><text x="58" y="16" fill="#fff">Leadership check-in</text><circle cx="239" cy="11.5" r="4" fill="#9ac445"/>
+        <rect y="30" width="254" height="23" rx="7" fill="#263b3e"/><text x="10" y="46" fill="#a8bbb9">14:00</text><text x="58" y="46" fill="#fff">Applicant interviews</text><circle cx="239" cy="41.5" r="4" fill="#d5ab3d"/>
+        <rect y="60" width="254" height="23" rx="7" fill="#263b3e"/><text x="10" y="76" fill="#a8bbb9">16:30</text><text x="58" y="76" fill="#fff">Weekly reporting</text><circle cx="239" cy="71.5" r="4" fill="#668e92"/>
+      </g>
+    </g>
+  </g>
+</svg>
