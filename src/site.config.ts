@@ -14,6 +14,7 @@ export const site = {
     github: 'https://github.com/Jpelotea',
     freelancer: 'https://www.freelancer.com/u/Jpel23',
     facebook: 'https://www.facebook.com/auhsoj.villafane',
+    messenger: 'https://m.me/auhsoj.villafane',
     whatsapp: 'https://wa.me/639927190779',
     viber: 'viber://chat?number=%2B639927190779'
   }
