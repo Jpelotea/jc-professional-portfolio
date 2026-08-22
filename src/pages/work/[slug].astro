@@ -12,7 +12,7 @@ const { project } = Astro.props;
 const title = `${project.title} | Joshua Carl Pelotea (JC)`;
 const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${project.summary}`;
 ---
-<BaseLayout title={title} description={description} canonical={`/work/${project.slug}/`} image={project.image || '/assets/avodah-ops.webp'}>
+<BaseLayout title={title} description={description} canonical={`/work/${project.slug}/`} image={project.socialImage || project.image || '/assets/og-default.svg'}>
   <Header />
   <main id="main">
     <section class="page-hero">
@@ -37,10 +37,10 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
             data-lightbox-src={project.image}
             data-lightbox-alt={project.imageAlt || ''}
             data-lightbox-caption={`${project.title} — portfolio evidence preview`}
-            aria-label={`Enlarge ${project.title} portfolio preview`}
+            aria-label={`View larger ${project.title} portfolio preview`}
           >
             <img src={project.image} alt={project.imageAlt || ''} />
-            <span class="zoom-badge" aria-hidden="true">Enlarge ↗</span>
+            <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
           </button>
         ) : (
           <div class="case-visual"><div class="project-visual project-visual--abstract" style="height:100%"></div></div>
@@ -64,7 +64,7 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
         </article>
         <article class="case-section">
           <aside>04 · Evidence</aside>
-          <div class="content"><h2>Documented deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>Public portfolio evidence is limited to publishable artifacts. Confidential information, applicant-level personal data, and unsupported performance claims are intentionally excluded.</p></div>
+          <div class="content"><h2>Documented deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>Public evidence focuses on publishable artifacts and selected deliverables while confidential business information and applicant-level personal data remain private.</p></div>
         </article>
         <article class="case-section">
           <aside>05 · Outcome</aside>
