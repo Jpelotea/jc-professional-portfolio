@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const title = `${project.title} | Joshua Carl Pelotea (JC)`;
+const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${project.summary}`;
+---
+<BaseLayout title={title} description={description} canonical={`/work/${project.slug}/`} image={project.image || '/assets/avodah-ops.webp'}>
+  <Header />
+  <main id="main">
+    <section class="page-hero">
+      <div class="container case-hero">
+        <div>
+          <div class="breadcrumbs"><a href="/">Home</a><span>/</span><a href="/work/">Work</a><span>/</span><span>{project.title}</span></div>
+          <p class="eyebrow">Case Study · {project.category}</p>
+          <h1>{project.title}</h1>
+          <p class="lede">{project.summary}</p>
+          <div class="hero-actions">
+            {project.live && <a class="button" href={project.live} target="_blank" rel="noopener">Open live work ↗</a>}
+            {project.github && <a class="button button--ghost" href={project.github} target="_blank" rel="noopener">GitHub ↗</a>}
+          </div>
+        </div>
+        <div class="case-visual">
+          {project.image ? <img src={project.image} alt={project.imageAlt || ''} /> : <div class="project-visual project-visual--abstract" style="height:100%"></div>}
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact">
+      <div class="container">
+        <article class="case-section">
+          <aside>01 · Context</aside>
+          <div class="content"><h2>The operational challenge</h2><p>{project.challenge}</p></div>
+        </article>
+        <article class="case-section">
+          <aside>02 · Approach</aside>
+          <div class="content"><h2>How the work was structured</h2><p>{project.approach}</p></div>
+        </article>
+        <article class="case-section">
+          <aside>03 · Contribution</aside>
+          <div class="content"><h2>Selected contributions</h2><ul class="clean-list">{project.contributions.map((item) => <li>{item}</li>)}</ul></div>
+        </article>
+        <article class="case-section">
+          <aside>04 · Evidence</aside>
+          <div class="content"><h2>Documented deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>Public portfolio evidence is limited to publishable artifacts. Confidential information, applicant-level personal data, and unsupported performance claims are intentionally excluded.</p></div>
+        </article>
+        <article class="case-section">
+          <aside>05 · Outcome</aside>
+          <div class="content"><h2>What changed</h2><p>{project.outcome}</p></div>
+        </article>
+        <article class="case-section">
+          <aside>06 · Environment</aside>
+          <div class="content"><h2>Tools & operating environment</h2><ul class="pill-list">{project.tools.map((tool) => <li>{tool}</li>)}</ul></div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
