@@ -1,0 +1,86 @@
+name: Portfolio quality checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Astro check
+        run: npm run check
+
+      - name: Production build
+        run: bash build-cloudflare.sh
+
+      - name: Validate internal links
+        run: npm run check:links
+
+      - name: Validate image dimensions
+        run: npm run check:images
+
+      - name: Verify production output
+        run: |
+          test -f dist/index.html
+          test -f dist/about/index.html
+          test -f dist/work/index.html
+          test -f dist/work/avodah/index.html
+          test -f dist/work/openready/index.html
+          test -f dist/work/ice-zeta/index.html
+          test -f dist/work/konnevia/index.html
+          test -f dist/404.html
+          test -f dist/robots.txt
+          test -f dist/_headers
+          test -f dist/site.webmanifest
+          test -f dist/favicon.svg
+          test -f dist/favicon.ico
+          test -f dist/favicon-16.png
+          test -f dist/favicon-32.png
+          test -f dist/favicon-48.png
+          test -f dist/favicon-64.png
+          test -f dist/apple-touch-icon.png
+          test -f dist/icon-192.png
+          test -f dist/icon-512.png
+          test -d dist/assets
+          test -f dist/assets/brand/jc-symbol-16-dark.svg
+          test -f dist/assets/brand/jc-symbol-16-light.svg
+          test -f dist/assets/brand/jc-symbol-simplified-dark.svg
+          test -f dist/assets/brand/jc-symbol-simplified-light.svg
+          test -f dist/assets/jc-pelotea-portrait.jpg
+          test -f dist/assets/avodah-website-proof.webp
+          test -f dist/assets/ice-zeta-website-2026-08.webp
+          test -f dist/assets/konnevia-website-2026-08.png
+          test -f dist/assets/og-default.png
+          test -f dist/assets/og-ice-zeta.png
+          test -f dist/assets/og-konnevia.png
+          test -f dist/assets/avodah-ops.png
+          test -f dist/assets/avodah-creative.png
+          test -f dist/assets/openready.png
+
+      - name: Record build footprint
+        run: npm run report:build
