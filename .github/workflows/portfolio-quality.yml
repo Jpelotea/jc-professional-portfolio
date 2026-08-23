@@ -77,6 +77,11 @@ jobs:
           test "$(head -c 4 dist/resume/jc-pelotea-resume.pdf)" = '%PDF'
           test -d dist/assets
           test -f dist/assets/analytics-events.js
+          event_client="$(find dist/assets -maxdepth 1 -type f -name 'analytics-events.*.js' -print -quit)"
+          test -n "$event_client"
+          event_client_name="$(basename "$event_client")"
+          grep -q "/assets/$event_client_name" dist/index.html
+          grep -q 'resume_download' "$event_client"
           test -f dist/assets/brand/jc-symbol-16-dark.svg
           test -f dist/assets/brand/jc-symbol-16-light.svg
           test -f dist/assets/brand/jc-symbol-simplified-dark.svg
@@ -91,10 +96,8 @@ jobs:
           test -f dist/assets/avodah-ops.png
           test -f dist/assets/avodah-creative.png
           test -f dist/assets/openready.png
-          grep -q '/assets/analytics-events.js' dist/index.html
           grep -q 'href="/resume/jc-pelotea-resume.pdf"' dist/about/index.html
           grep -q 'href="/resume/jc-pelotea-resume.pdf"' dist/index.html
-          grep -q 'resume_download' dist/assets/analytics-events.js
           grep -q 'static.cloudflareinsights.com' dist/_headers
           grep -q 'cloudflareinsights.com' dist/_headers
 
@@ -111,4 +114,4 @@ jobs:
           grep -q 'data-cf-beacon' dist/index.html
           grep -q 'name="google-site-verification"' dist/index.html
           test "$(grep -R -l 'name="google-site-verification"' dist --include='*.html' | wc -l)" -eq 1
-          test "$(grep -o '/assets/analytics-events.js' dist/index.html | wc -l)" -eq 1
+          test "$(grep -o '/assets/analytics-events\.[a-f0-9]\{12\}\.js' dist/index.html | wc -l)" -eq 1
