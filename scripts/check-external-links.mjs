@@ -6,6 +6,8 @@ const links = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/jcpelotea', policy: 'soft' },
   { name: 'GitHub profile', url: 'https://github.com/Jpelotea', policy: 'strict' },
   { name: 'Freelancer', url: 'https://www.freelancer.com/u/Jpel23', policy: 'soft' },
+  { name: 'WhatsApp', url: 'https://api.whatsapp.com/send?phone=639927190779', policy: 'soft' },
+  { name: 'Viber', url: 'https://viber.me/639927190779', policy: 'soft' },
   { name: 'Avodah website', url: 'https://avodahwealthadvisory.netlify.app/', policy: 'strict' },
   { name: 'OpenReady', url: 'https://getopenready.netlify.app', policy: 'strict' },
   { name: 'OpenReady repository', url: 'https://github.com/Jpelotea/openready', policy: 'strict' },
