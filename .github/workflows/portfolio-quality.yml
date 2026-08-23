@@ -72,6 +72,9 @@ jobs:
           test -f dist/apple-touch-icon.png
           test -f dist/icon-192.png
           test -f dist/icon-512.png
+          test -f dist/resume/jc-pelotea-resume.pdf
+          test -s dist/resume/jc-pelotea-resume.pdf
+          test "$(head -c 4 dist/resume/jc-pelotea-resume.pdf)" = '%PDF'
           test -d dist/assets
           test -f dist/assets/analytics-events.js
           test -f dist/assets/brand/jc-symbol-16-dark.svg
@@ -89,6 +92,9 @@ jobs:
           test -f dist/assets/avodah-creative.png
           test -f dist/assets/openready.png
           grep -q '/assets/analytics-events.js' dist/index.html
+          grep -q 'href="/resume/jc-pelotea-resume.pdf"' dist/about/index.html
+          grep -q 'href="/resume/jc-pelotea-resume.pdf"' dist/index.html
+          grep -q 'resume_download' dist/assets/analytics-events.js
           grep -q 'static.cloudflareinsights.com' dist/_headers
           grep -q 'cloudflareinsights.com' dist/_headers
 
