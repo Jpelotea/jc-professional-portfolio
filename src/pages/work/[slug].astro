@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { projects } from '../../data/projects';
 import type { Project } from '../../data/projects';
+import { breadcrumbStructuredData, caseStudyStructuredData } from '../../lib/structured-data';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -12,8 +13,22 @@ export function getStaticPaths() {
 const { project } = Astro.props as { project: Project };
 const title = `${project.title} | Joshua Carl Pelotea (JC)`;
 const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${project.summary}`;
+const structuredData = [
+  breadcrumbStructuredData([
+    { name: 'Home', path: '/' },
+    { name: 'Work', path: '/work/' },
+    { name: project.title, path: `/work/${project.slug}/` }
+  ]),
+  caseStudyStructuredData(project)
+];
 ---
-<BaseLayout title={title} description={description} canonical={`/work/${project.slug}/`} image={project.socialImage || project.image || '/assets/og-default.png'}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/work/${project.slug}/`}
+  image={project.socialImage || project.image || '/assets/og-default.png'}
+  structuredData={structuredData}
+>
   <Header />
   <main id="main">
     <section class="page-hero">
@@ -51,6 +66,17 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
         ) : (
           <div class="case-visual"><div class="project-visual project-visual--abstract" style="height:100%"></div></div>
         )}
+      </div>
+    </section>
+
+    <section class="case-facts-section">
+      <div class="container">
+        <dl class="case-facts glass-panel" aria-label={`${project.title} engagement summary`}>
+          <div><dt>Role / engagement</dt><dd>{project.engagement}</dd></div>
+          <div><dt>Scope</dt><dd>{project.scope}</dd></div>
+          <div><dt>What I owned</dt><dd>{project.ownership}</dd></div>
+          <div><dt>Operational outcome</dt><dd>{project.operationalOutcome}</dd></div>
+        </dl>
       </div>
     </section>
 

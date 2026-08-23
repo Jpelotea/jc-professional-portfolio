@@ -4,38 +4,34 @@ import '../styles/refinements.css';
 import '../styles/release.css';
 import '../styles/motion.css';
 import { site } from '../site.config';
+import { personStructuredData } from '../lib/structured-data';
+import type { StructuredData } from '../lib/structured-data';
 
 interface Props {
   title?: string;
   description?: string;
   canonical?: string;
   image?: string;
+  structuredData?: StructuredData | StructuredData[];
 }
 
 const {
   title = site.title,
   description = site.description,
   canonical = Astro.url.pathname,
-  image = '/assets/og-default.png'
+  image = '/assets/og-default.png',
+  structuredData
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, site.url).toString();
 const imageUrl = new URL(image, site.url).toString();
 const imageType = imageUrl.endsWith('.png') ? 'image/png' : imageUrl.endsWith('.svg') ? 'image/svg+xml' : imageUrl.endsWith('.webp') ? 'image/webp' : undefined;
+const pageStructuredData = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+  : [];
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.name,
-  alternateName: site.professionalName,
-  url: site.url,
-  jobTitle: site.role,
-  email: `mailto:${site.email}`,
-  sameAs: [
-    site.social.linkedin,
-    site.social.github,
-    site.social.freelancer,
-    site.social.facebook
-  ]
+  '@graph': [personStructuredData, ...pageStructuredData]
 };
 ---
 <!doctype html>

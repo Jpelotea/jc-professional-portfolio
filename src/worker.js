@@ -3,7 +3,8 @@ const ALLOWED_EVENTS = new Set([
   'booking_click',
   'email_click',
   'linkedin_click',
-  'freelancer_click'
+  'freelancer_click',
+  'resume_download'
 ]);
 
 const jsonResponse = (body, status) => new Response(JSON.stringify(body), {

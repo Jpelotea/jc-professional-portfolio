@@ -1,6 +1,6 @@
 {
   "name": "jc-professional-portfolio",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
     "check:links": "node scripts/check-internal-links.mjs",
     "check:images": "node scripts/check-image-dimensions.mjs",
     "check:external": "node scripts/check-external-links.mjs",
+    "check:schema": "node scripts/check-structured-data.mjs",
     "test:events": "node scripts/test-event-endpoint.mjs",
     "inject:observability": "node scripts/inject-observability.mjs",
     "report:build": "node scripts/report-build-baseline.mjs"

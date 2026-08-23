@@ -4,6 +4,10 @@ export type Project = {
   title: string;
   category: string;
   summary: string;
+  engagement: string;
+  scope: string;
+  ownership: string;
+  operationalOutcome: string;
   challenge: string;
   approach: string;
   contributions: string[];
@@ -31,6 +35,13 @@ export const projects: Project[] = [
     category: 'Website Design & Development · Content Architecture · Digital Experience',
     summary:
       'A multi-page advisory website I designed and built to explain Avodah’s services clearly, guide different client audiences, and turn interest into needs-check and consultation inquiries.',
+    engagement: 'Website design, development, and digital operations support',
+    scope:
+      'Public website architecture, service content, inquiry journeys, compliance pages, deployment, production QA, and ongoing updates.',
+    ownership:
+      'Site structure, responsive build, content organization, forms, trust and disclosure pages, and GitHub/Netlify delivery.',
+    operationalOutcome:
+      'A coherent public-facing website with clearer service navigation and direct discovery-to-inquiry paths.',
     challenge:
       'Avodah needed a credible public website that could present a broad mix of advisory services without confusing visitors or implying that the company directly lends, underwrites, or approves products. The experience also needed clear pathways for families, OFWs, seafarers, professionals, and business owners.',
     approach:
@@ -74,6 +85,13 @@ export const projects: Project[] = [
     category: 'Digital Product · GitHub · Release Operations',
     summary:
       'A public repository-health assessment product shaped through product structure, documentation, roadmap planning, GitHub workflow, and static deployment.',
+    engagement: 'Product structure and release operations',
+    scope:
+      'Assessment experience, public product presentation, documentation, roadmap structure, repository workflow, and static deployment.',
+    ownership:
+      'Assessment structure, product presentation, roadmap and release documentation, repository organization, and deployment validation.',
+    operationalOutcome:
+      'A public, inspectable product with a clearer assessment workflow and transparent release path.',
     challenge:
       'The project needed a clear user experience for turning broad open-source readiness practices into a practical, trackable workflow.',
     approach:
@@ -105,6 +123,13 @@ export const projects: Project[] = [
     category: 'Brand Systems · Website · Recruitment Messaging',
     summary:
       'A leadership and career-development brand translated into a consistent identity, recruitment message, website, and repeatable content system.',
+    engagement: 'Brand systems and digital execution',
+    scope:
+      'Identity system, messaging pillars, recruitment communication, website support, content planning, and repeatable campaign structure.',
+    ownership:
+      'Brand guidelines, messaging pillars, 30-day content calendar, website support, and repeatable campaign workflow.',
+    operationalOutcome:
+      'A more coherent brand with a repeatable communications system for recruitment and marketing activity.',
     challenge:
       'ICE Zeta needed a recognizable identity and a consistent way to communicate leadership, mentorship, career opportunity, financial education, and community.',
     approach:
@@ -135,6 +160,13 @@ export const projects: Project[] = [
     category: 'Product Operations · Digital QA · Release Readiness',
     summary:
       'Product coordination, technical QA, documentation, deployment validation, and private-beta readiness work for a SaaS-style platform.',
+    engagement: 'Product operations and release-readiness support',
+    scope:
+      'Requirements, technical QA, security and configuration review, deployment validation, documentation, and private-beta readiness.',
+    ownership:
+      'Readiness criteria, QA standards, requirements tracking, production validation, GitHub coordination, and supporting documentation.',
+    operationalOutcome:
+      'Clearer release criteria, QA standards, production validation, and operational tracking toward private-beta readiness.',
     challenge:
       'The platform needed coherent release discipline across authentication, tenant separation, deployment, configuration, security checks, QA, and beta-readiness decisions.',
     approach:

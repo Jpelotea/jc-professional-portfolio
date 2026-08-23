@@ -3,11 +3,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { projects } from '../../data/projects';
+import { breadcrumbStructuredData } from '../../lib/structured-data';
+
+const structuredData = breadcrumbStructuredData([
+  { name: 'Home', path: '/' },
+  { name: 'Work', path: '/work/' }
+]);
 ---
 <BaseLayout
   title="Selected Work | Joshua Carl Pelotea (JC)"
   description="Selected case studies by Joshua Carl Pelotea (JC) across business operations, executive support, workflow systems, digital products, documentation, and campaign execution."
   canonical="/work/"
+  structuredData={structuredData}
 >
   <Header />
   <main id="main">

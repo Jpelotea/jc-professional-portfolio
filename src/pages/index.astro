@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { projects } from '../data/projects';
+import { websiteStructuredData } from '../lib/structured-data';
 import { coreTools, site } from '../site.config';
 
 const capabilities = [
@@ -23,7 +24,7 @@ const experience = [
   ['2018 — 2021', 'Barangay Tagabaca', 'Sangguniang Kabataan Chairman', 'Leadership, community-project coordination, budgeting, documentation, events, and stakeholder communication.']
 ];
 ---
-<BaseLayout>
+<BaseLayout structuredData={websiteStructuredData}>
   <Header />
   <main id="main">
     <section class="hero hero--home">
@@ -217,6 +218,7 @@ const experience = [
           <p class="eyebrow" data-motion="rise">Work with JC</p>
           <h2 data-motion="rise" style="--motion-delay: 70ms">Need stronger structure behind the work?</h2>
           <p data-motion="rise" style="--motion-delay: 145ms">Share the operational challenge, what tools are already in place, and what a better outcome should look like. Book a 30-minute discovery call to discuss priorities, or email me if you would rather start asynchronously.</p>
+          <p class="availability-note availability-note--contact" data-motion="rise" style="--motion-delay: 190ms"><span aria-hidden="true"></span>{site.availability}</p>
           <div class="contact-links" data-motion="rise" style="--motion-delay: 225ms">
             <a class="button" href={site.booking} target="_blank" rel="noopener">Book a discovery call ↗</a>
             <a class="button button--ghost" href={`mailto:${site.email}`}>Email JC</a>
@@ -224,7 +226,7 @@ const experience = [
             <a class="button button--ghost" href={site.social.freelancer} target="_blank" rel="noopener">Freelancer ↗</a>
             <a class="button button--ghost" href={site.social.github} target="_blank" rel="noopener">GitHub ↗</a>
           </div>
-          <p class="contact-secondary">Direct messaging: <a href={site.social.whatsapp} target="_blank" rel="noopener">WhatsApp</a> · <a href={site.social.messenger} target="_blank" rel="noopener">Messenger</a> · <a href={site.social.viber} title="Requires the Viber app">Viber app</a> <span aria-label={`Viber number ${site.social.viberNumber}`}>({site.social.viberNumber})</span>. Social profile: <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>.</p>
+          <p class="contact-secondary">Direct messaging: <a href={site.social.whatsapp} target="_blank" rel="noopener">WhatsApp</a> · <a href={site.social.messenger} target="_blank" rel="noopener">Messenger</a> · <a href={site.social.viber} title="Requires the Viber app">Viber app</a> <span aria-label={`Viber number ${site.social.viberNumber}`}>({site.social.viberNumber})</span>. Social profile: <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>. Résumé: <a href={site.resume} download>Download PDF</a>.</p>
         </div>
       </div>
     </section>
