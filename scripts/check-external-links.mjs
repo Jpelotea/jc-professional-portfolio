@@ -82,7 +82,7 @@ const markdown = [
     return `| ${result.name} | ${result.policy} | ${icon} ${result.state} | ${result.detail} |`;
   }),
   '',
-  '_Soft destinations are known to use bot challenges or rate limiting. They are surfaced for human review but do not fail the monitor. Strict project destinations must return a successful HTTP response. App-only protocol links such as Viber are validated manually rather than through this HTTP monitor._',
+  '_Soft destinations are known to use bot challenges or rate limiting. They are surfaced for human review but do not fail the monitor. Strict project destinations must return a successful HTTP response. App-only protocol links such as the personal Viber deep link are validated manually because they are not HTTP endpoints._',
   ''
 ].join('\n');
 
