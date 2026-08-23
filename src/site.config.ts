@@ -17,8 +17,8 @@ export const site = {
     freelancer: 'https://www.freelancer.com/u/Jpel23',
     facebook: 'https://www.facebook.com/auhsoj.villafane',
     messenger: 'https://m.me/auhsoj.villafane',
-    whatsapp: 'https://wa.me/639927190779',
-    viber: 'viber://chat?number=%2B639927190779'
+    whatsapp: 'https://api.whatsapp.com/send?phone=639927190779',
+    viber: 'https://viber.me/639927190779'
   }
 } as const;
 
