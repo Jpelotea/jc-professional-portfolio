@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -5,8 +6,15 @@ import process from 'node:process';
 const distRoot = path.resolve('dist');
 const cloudflareToken = process.env.CF_WEB_ANALYTICS_TOKEN?.trim() || '';
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim() || '';
-const eventClientSrc = '/assets/analytics-events.js';
+const eventClientSource = path.join(distRoot, 'assets', 'analytics-events.js');
+const eventClient = await readFile(eventClientSource);
+const eventClientHash = createHash('sha256').update(eventClient).digest('hex').slice(0, 12);
+const eventClientFilename = `analytics-events.${eventClientHash}.js`;
+const eventClientOutput = path.join(distRoot, 'assets', eventClientFilename);
+const eventClientSrc = `/assets/${eventClientFilename}`;
 const htmlFiles = [];
+
+await writeFile(eventClientOutput, eventClient);
 
 async function walk(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -72,6 +80,7 @@ for (const htmlFile of htmlFiles) {
   }
 }
 
+console.log(`Prepared fingerprinted CTA event client ${eventClientSrc}.`);
 console.log(`Injected first-party CTA event client into ${eventClientPages} HTML page${eventClientPages === 1 ? '' : 's'}.`);
 
 if (cloudflareToken) console.log(`Injected Cloudflare Web Analytics into ${cloudflarePages} HTML page${cloudflarePages === 1 ? '' : 's'}.`);
