@@ -11,12 +11,12 @@ const capabilities = [
   ['02', 'Executive Support', 'Calendar management, appointment coordination, executive communication, documentation, and leadership support.'],
   ['03', 'Workflow Automation', 'Google Sheets, Apps Script, automated dashboards, trackers, and practical process optimization.'],
   ['04', 'Business Documentation', 'SOPs, policies, proposals, service agreements, process documentation, and internal knowledge systems.'],
-  ['05', 'Digital Operations', 'Website management, content updates, QA, GitHub workflows, deployments, and digital systems support.'],
+  ['05', 'Frontend & Digital Operations', 'Responsive websites, HTML, CSS, JavaScript, Astro, accessibility-minded UI, QA, GitHub workflows, and deployments.'],
   ['06', 'Marketing Support', 'Content planning, social media coordination, campaign support, graphic design, and marketing operations.']
 ];
 
 const experience = [
-  ['2026 — Present', 'Avodah Wealth Advisory', 'Administrative Assistant / General Admin Support', 'Business operations, executive coordination, recruitment, CRM/client workflows, dashboards, documentation, website operations, and digital marketing support.'],
+  ['Jun — Aug 2026', 'Avodah Wealth Advisory', 'Business Operations & Executive Assistant', 'Business operations, executive coordination, recruitment, CRM/client workflows, dashboards, documentation, website operations, and digital marketing support.'],
   ['2025', 'KRISS.AI', 'Outreach Specialist & Co-Team Leader · Part-time', 'Outreach coordination, prospect communication, lead follow-up, and AI-solution positioning for healthcare organizations.'],
   ['2023', 'Teleperformance', 'Customer Service Representative', 'High-volume customer support, CRM records, follow-ups, issue resolution, and service-quality execution.'],
   ['2022', 'Concentrix', 'Customer Service Representative', 'Outbound customer communication, renewals, account updates, objection handling, and internal coordination.'],
@@ -30,10 +30,10 @@ const experience = [
     <section class="hero hero--home">
       <div class="container hero-grid hero-grid--home">
         <div class="hero-copy">
-          <p class="eyebrow" data-motion="hero" style="--motion-delay: 0ms">Business Operations · Executive Support · Digital Systems</p>
+          <p class="eyebrow" data-motion="hero" style="--motion-delay: 0ms">Business Operations · Executive Support · Frontend Web Development</p>
           <p class="hero-name" data-motion="hero" style="--motion-delay: 70ms"><strong>Joshua Carl Pelotea</strong><span>Known professionally as JC</span></p>
-          <h1 class="home-title" data-motion="hero" style="--motion-delay: 150ms">Bringing structure to <span class="soft">people, processes,</span> and daily execution.</h1>
-          <p class="lede" data-motion="hero" style="--motion-delay: 235ms">I help executives, entrepreneurs, and growing businesses stay organized, efficient, and focused on growth through reliable administrative, operational, and digital support.</p>
+          <h1 class="home-title" data-motion="hero" style="--motion-delay: 150ms">Bringing structure to <span class="soft">people, processes,</span> and digital experiences.</h1>
+          <p class="lede" data-motion="hero" style="--motion-delay: 235ms">I support executives, entrepreneurs, and growing businesses through organized operations, reliable executive support, and responsive web development—from workflow systems and documentation to production-ready websites.</p>
           <div class="hero-actions" data-motion="hero" style="--motion-delay: 325ms">
             <a class="button" href="/work/">See systems &amp; proof <span aria-hidden="true">→</span></a>
             <a class="button button--ghost hero-booking-cta" href={site.booking} target="_blank" rel="noopener">Book a call ↗</a>
@@ -41,8 +41,8 @@ const experience = [
           <div class="hero-meta" data-motion="hero" style="--motion-delay: 400ms" aria-label="Core disciplines">
             <span class="tag">Business Operations</span>
             <span class="tag">Executive Support</span>
-            <span class="tag">Workflow Automation</span>
-            <span class="tag">Digital Operations</span>
+            <span class="tag">Frontend Web Development</span>
+            <span class="tag">Digital QA</span>
           </div>
         </div>
         <aside class="identity-card identity-card--home glass-panel" data-motion="hero-card" style="--motion-delay: 180ms">
@@ -54,7 +54,7 @@ const experience = [
             <div><span>Core focus</span><strong>Business Operations</strong></div>
             <div><span>Support layer</span><strong>Executive + Administrative</strong></div>
             <div><span>Systems layer</span><strong>Automation + Documentation</strong></div>
-            <div><span>Digital layer</span><strong>Web + Campaign Operations</strong></div>
+            <div><span>Digital layer</span><strong>Frontend Web + Digital QA</strong></div>
           </div>
         </aside>
       </div>
@@ -64,7 +64,7 @@ const experience = [
       <div class="container tool-strip__inner">
         <div data-motion="rise">
           <p class="eyebrow" id="tools-heading">Core tools</p>
-          <p>Platforms used across documented operations, automation, digital, and campaign work.</p>
+          <p>Platforms and technologies used across documented operations, frontend development, automation, and digital delivery.</p>
         </div>
         <div class="tool-badges" aria-label="Core software stack">
           {coreTools.map((tool, index) => <span data-motion="rise" style={`--motion-delay: ${index * 48}ms`}>{tool}</span>)}
@@ -75,8 +75,8 @@ const experience = [
     <section class="section" id="capabilities">
       <div class="container">
         <div class="section-heading" data-motion="rise">
-          <div><p class="eyebrow">Capabilities</p><h2>Operations-led support with a practical digital layer.</h2></div>
-          <p>Business Operations is the anchor. The supporting capabilities extend the same focus on clarity, visibility, accountability, and consistent execution.</p>
+          <div><p class="eyebrow">Capabilities</p><h2>Operations-led support with hands-on frontend delivery.</h2></div>
+          <p>Business Operations remains the anchor, supported by executive coordination, automation, documentation, frontend web development, digital QA, and marketing execution.</p>
         </div>
         <div class="capability-grid">
           {capabilities.map(([number, title, description], index) => (
