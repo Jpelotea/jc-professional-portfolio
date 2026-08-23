@@ -2,15 +2,15 @@ export const site = {
   name: 'Joshua Carl Pelotea',
   shortName: 'JC Pelotea',
   professionalName: 'JC',
-  title: 'Joshua Carl Pelotea (JC) | Business Operations & Executive Support',
+  title: 'Joshua Carl Pelotea (JC) | Business Operations, Executive Support & Frontend Web Development',
   description:
-    'Business Operations & Executive Support portfolio of Joshua Carl Pelotea (JC), featuring operations systems, workflow automation, documentation, digital projects, and marketing support.',
+    'Professional portfolio of Joshua Carl Pelotea (JC), featuring business operations, executive support, frontend web development, workflow automation, digital QA, and production website delivery.',
   url: 'https://portfolio.jcpelotea.workers.dev',
   role: 'Business Operations & Executive Support Specialist',
   compactRole: 'Business Operations & Executive Support',
   location: 'Butuan City, Philippines',
   availability:
-    'Available for business operations, executive support, workflow improvement, and project-based digital operations engagements.',
+    'Available for business operations, executive support, workflow improvement, frontend web development, and project-based digital operations engagements.',
   email: 'peloteajoshuacarl0@gmail.com',
   booking: 'https://calendar.app.google/Y2ZHPjRLXgX4YoJu5',
   resume: '/resume/jc-pelotea-resume.pdf',
@@ -36,11 +36,13 @@ export const navigation = [
 ] as const;
 
 export const coreTools = [
-  'Google Workspace',
-  'Google Sheets',
-  'Apps Script',
+  'Astro',
+  'HTML / CSS / JavaScript',
   'GitHub',
   'Cloudflare',
   'Netlify',
+  'Google Workspace',
+  'Google Sheets',
+  'Apps Script',
   'Canva'
 ] as const;
