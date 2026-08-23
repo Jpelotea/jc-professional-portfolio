@@ -18,7 +18,8 @@ export const site = {
     facebook: 'https://www.facebook.com/auhsoj.villafane',
     messenger: 'https://m.me/auhsoj.villafane',
     whatsapp: 'https://api.whatsapp.com/send?phone=639927190779',
-    viber: 'https://viber.me/639927190779'
+    viber: 'viber://chat?number=%2B639927190779',
+    viberNumber: '+63 992 719 0779'
   }
 } as const;
 
