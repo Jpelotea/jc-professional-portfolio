@@ -30,6 +30,10 @@
       return null;
     }
 
+    if (url.origin === window.location.origin && url.pathname === '/resume/jc-pelotea-resume.pdf') {
+      return 'resume_download';
+    }
+
     const host = url.hostname.toLowerCase();
     if (host === 'calendar.app.google') return 'booking_click';
     if (host === 'linkedin.com' || host.endsWith('.linkedin.com')) return 'linkedin_click';
