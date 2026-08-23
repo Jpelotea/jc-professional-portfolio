@@ -47,6 +47,9 @@ jobs:
       - name: Validate image dimensions
         run: npm run check:images
 
+      - name: Validate structured data
+        run: npm run check:schema
+
       - name: Verify production output
         run: |
           test -f dist/index.html
