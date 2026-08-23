@@ -18,6 +18,8 @@ export const site = {
     facebook: 'https://www.facebook.com/auhsoj.villafane',
     messenger: 'https://m.me/auhsoj.villafane',
     whatsapp: 'https://api.whatsapp.com/send?phone=639927190779',
+    // Personal Viber numbers do not have a universal HTTPS click-to-chat URL.
+    // viber.me/<number> requires that number to be registered as a Viber Business Account.
     viber: 'viber://chat?number=%2B639927190779',
     viberNumber: '+63 992 719 0779'
   }
