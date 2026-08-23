@@ -6,6 +6,7 @@ const links = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/jcpelotea', policy: 'soft' },
   { name: 'GitHub profile', url: 'https://github.com/Jpelotea', policy: 'strict' },
   { name: 'Freelancer', url: 'https://www.freelancer.com/u/Jpel23', policy: 'soft' },
+  { name: 'WhatsApp', url: 'https://api.whatsapp.com/send?phone=639927190779', policy: 'soft' },
   { name: 'Avodah website', url: 'https://avodahwealthadvisory.netlify.app/', policy: 'strict' },
   { name: 'OpenReady', url: 'https://getopenready.netlify.app', policy: 'strict' },
   { name: 'OpenReady repository', url: 'https://github.com/Jpelotea/openready', policy: 'strict' },
@@ -81,7 +82,7 @@ const markdown = [
     return `| ${result.name} | ${result.policy} | ${icon} ${result.state} | ${result.detail} |`;
   }),
   '',
-  '_Soft destinations are known to use bot challenges or rate limiting. They are surfaced for human review but do not fail the monitor. Strict project destinations must return a successful HTTP response._',
+  '_Soft destinations are known to use bot challenges or rate limiting. They are surfaced for human review but do not fail the monitor. Strict project destinations must return a successful HTTP response. App-only protocol links such as the personal Viber deep link are validated manually because they are not HTTP endpoints._',
   ''
 ].join('\n');
 
