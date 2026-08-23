@@ -33,25 +33,36 @@ assert.deepEqual(writes[0], {
   doubles: [1]
 });
 
+const resumeDownload = await worker.fetch(makeRequest({
+  body: { event: 'resume_download', path: '/about/' }
+}), env);
+assert.equal(resumeDownload.status, 204);
+assert.equal(writes.length, 2);
+assert.deepEqual(writes[1], {
+  indexes: ['portfolio.jcpelotea.workers.dev'],
+  blobs: ['resume_download', '/about/'],
+  doubles: [1]
+});
+
 const invalidEvent = await worker.fetch(makeRequest({ body: { event: 'unknown_event', path: '/' } }), env);
 assert.equal(invalidEvent.status, 400);
-assert.equal(writes.length, 1);
+assert.equal(writes.length, 2);
 
 const crossOrigin = await worker.fetch(makeRequest({ origin: 'https://example.com' }), env);
 assert.equal(crossOrigin.status, 403);
-assert.equal(writes.length, 1);
+assert.equal(writes.length, 2);
 
 const invalidPath = await worker.fetch(makeRequest({ body: { event: 'email_click', path: 'not-a-path' } }), env);
 assert.equal(invalidPath.status, 400);
-assert.equal(writes.length, 1);
+assert.equal(writes.length, 2);
 
 const wrongMethod = await worker.fetch(makeRequest({ method: 'GET' }), env);
 assert.equal(wrongMethod.status, 405);
 assert.equal(wrongMethod.headers.get('allow'), 'POST');
-assert.equal(writes.length, 1);
+assert.equal(writes.length, 2);
 
 const unknownRoute = await worker.fetch(makeRequest({ url: 'https://portfolio.jcpelotea.workers.dev/api/other' }), env);
 assert.equal(unknownRoute.status, 404);
-assert.equal(writes.length, 1);
+assert.equal(writes.length, 2);
 
 console.log('First-party CTA event endpoint tests passed.');
