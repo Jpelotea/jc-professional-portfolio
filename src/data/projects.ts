@@ -12,6 +12,8 @@ export type Project = {
   tools: string[];
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   socialImage?: string;
   live?: string;
   liveLabel?: string;
@@ -54,6 +56,8 @@ export const projects: Project[] = [
     tools: ['HTML', 'CSS', 'JavaScript', 'GitHub', 'Netlify', 'Google Analytics'],
     image: '/assets/avodah-website-proof.webp',
     imageAlt: 'Homepage of the Avodah Wealth Advisory website designed and built by JC Pelotea',
+    imageWidth: 1120,
+    imageHeight: 630,
     socialImage: '/assets/avodah-website.png',
     live: 'https://avodahwealthadvisory.netlify.app/',
     liveLabel: 'View Avodah website ↗',
@@ -86,6 +90,8 @@ export const projects: Project[] = [
     tools: ['Astro', 'JavaScript', 'GitHub', 'Netlify', 'Documentation systems'],
     image: '/assets/openready.svg',
     imageAlt: 'Controlled composite of the OpenReady assessment workspace and roadmap',
+    imageWidth: 1120,
+    imageHeight: 630,
     socialImage: '/assets/openready.png',
     live: 'https://getopenready.netlify.app',
     liveLabel: 'Open live product ↗',
@@ -115,6 +121,8 @@ export const projects: Project[] = [
     tools: ['Brand documentation', 'Content planning', 'Wix', 'Google Workspace', 'AI-assisted content systems'],
     image: '/assets/ice-zeta-website-2026-08.webp',
     imageAlt: 'ICE Zeta Group website homepage featuring its leadership and career-development message',
+    imageWidth: 1100,
+    imageHeight: 548,
     socialImage: '/assets/og-ice-zeta.png',
     live: 'https://jcpelotea.wixsite.com/zeta',
     liveLabel: 'View ICE Zeta website ↗',
@@ -144,6 +152,8 @@ export const projects: Project[] = [
     tools: ['GitHub', 'Supabase', 'Cloudflare', 'React/Vite/TypeScript ecosystem', 'QA workflows', 'AI-assisted analysis'],
     image: '/assets/konnevia-website-2026-08.png',
     imageAlt: 'Konnevia website landing page introducing its profile, conversations, leads, and appointments hub',
+    imageWidth: 705,
+    imageHeight: 396,
     socialImage: '/assets/og-konnevia.png',
     live: 'https://konnevia.pages.dev',
     liveLabel: 'Open public preview ↗',

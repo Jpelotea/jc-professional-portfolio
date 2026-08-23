@@ -114,7 +114,13 @@ const experience = [
                   data-lightbox-caption={`${project.title} — portfolio evidence preview`}
                   aria-label={`View larger ${project.title} preview`}
                 >
-                  <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt || ''}
+                    width={project.imageWidth}
+                    height={project.imageHeight}
+                    loading="lazy"
+                  />
                   <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
                 </button>
               ) : project.slug === 'ice-zeta' ? (
@@ -152,7 +158,13 @@ const experience = [
               data-lightbox-caption="Avodah operations systems — dashboards, workflow architecture, recruitment, activity monitoring, and calendar coordination"
               aria-label="View larger Avodah operations systems preview"
             >
-              <img src="/assets/avodah-ops-proof.webp" alt="Composite of selected Avodah operations dashboards and workflow system screenshots" loading="lazy" />
+              <img
+                src="/assets/avodah-ops-proof.webp"
+                alt="Composite of selected Avodah operations dashboards and workflow system screenshots"
+                width="1120"
+                height="630"
+                loading="lazy"
+              />
               <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
             </button>
             <figcaption><strong>Operations systems</strong><span>Workflow architecture, dashboards, recruitment, activity monitoring, and calendar coordination.</span></figcaption>
@@ -166,7 +178,13 @@ const experience = [
               data-lightbox-caption="Avodah campaign execution — audience-specific financial education, protection, consultation, and brand assets"
               aria-label="View larger Avodah campaign execution preview"
             >
-              <img src="/assets/avodah-creative-proof.webp" alt="Composite of selected Avodah campaign graphics and content-plan screenshot" loading="lazy" />
+              <img
+                src="/assets/avodah-creative-proof.webp"
+                alt="Composite of selected Avodah campaign graphics and content-plan screenshot"
+                width="1120"
+                height="630"
+                loading="lazy"
+              />
               <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
             </button>
             <figcaption><strong>Campaign execution</strong><span>Audience-specific financial education, protection, consultation, and brand assets.</span></figcaption>

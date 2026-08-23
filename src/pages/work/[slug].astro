@@ -3,12 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { projects } from '../../data/projects';
+import type { Project } from '../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
 }
 
-const { project } = Astro.props;
+const { project } = Astro.props as { project: Project };
 const title = `${project.title} | Joshua Carl Pelotea (JC)`;
 const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${project.summary}`;
 ---
@@ -39,7 +40,12 @@ const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${
             data-lightbox-caption={project.imageAlt || `${project.title} — project preview`}
             aria-label={`View larger ${project.title} preview`}
           >
-            <img src={project.image} alt={project.imageAlt || ''} />
+            <img
+              src={project.image}
+              alt={project.imageAlt || ''}
+              width={project.imageWidth}
+              height={project.imageHeight}
+            />
             <span class="zoom-badge" aria-hidden="true">View larger ⤢</span>
           </button>
         ) : (

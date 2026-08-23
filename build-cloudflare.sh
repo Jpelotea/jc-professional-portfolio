@@ -13,4 +13,7 @@ node scripts/generate-social-images.mjs
 # Cloudflare static-assets 404 handling expects a root 404.html file.
 cp 404.html dist/404.html
 
+# Inject optional account-side observability tags only when build variables are configured.
+npm run inject:observability
+
 echo "Astro portfolio prepared in ./dist"

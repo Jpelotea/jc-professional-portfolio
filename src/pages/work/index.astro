@@ -31,7 +31,13 @@ import { projects } from '../../data/projects';
             </div>
             {project.image ? (
               <div class="project-visual">
-                <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />
+                <img
+                  src={project.image}
+                  alt={project.imageAlt || ''}
+                  width={project.imageWidth}
+                  height={project.imageHeight}
+                  loading="lazy"
+                />
               </div>
             ) : project.slug === 'ice-zeta' ? (
               <div class="project-visual project-visual--mockup project-visual--ice-zeta" aria-hidden="true">
