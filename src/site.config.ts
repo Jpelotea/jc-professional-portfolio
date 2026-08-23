@@ -13,6 +13,7 @@ export const site = {
     'Available for business operations, executive support, workflow improvement, and project-based digital operations engagements.',
   email: 'peloteajoshuacarl0@gmail.com',
   booking: 'https://calendar.app.google/Y2ZHPjRLXgX4YoJu5',
+  resume: '/resume/jc-pelotea-resume.pdf',
   social: {
     linkedin: 'https://www.linkedin.com/in/jcpelotea',
     github: 'https://github.com/Jpelotea',
