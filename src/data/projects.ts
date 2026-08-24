@@ -175,7 +175,7 @@ export const projects: Project[] = [
       'Created the product brief, content map, visual tokens, component states, responsive annotations, decision log, and QA checklist.',
       'Built the semantic landing-page sequence, CSS product illustration, responsive navigation, native FAQ disclosures, privacy notice, thank-you route, and custom 404.',
       'Implemented a three-field Netlify Forms waitlist with honeypot protection, accessible inline validation, loading/error/success states, consent text, and first-invalid-field focus.',
-      'Implemented GA4 consent denied by default, then limited events to CTA placement, form start, form errors without field values, and confirmed `sign_up`.',
+      'Implemented GA4 consent denied by default, then limited events to CTA placement, form start, form errors without field values, and post-success `generate_lead`.',
       'Verified production output, internal links, keyboard behavior, error states, reduced-motion behavior, and horizontal overflow across five target widths.'
     ],
     deliverables: [
@@ -207,7 +207,7 @@ export const projects: Project[] = [
       { value: '4', label: 'privacy-safe GA4 events' },
       { value: '5', label: 'responsive widths verified' }
     ],
-    conversionFlow: ['Visitor', 'Problem and workflow', 'Use-case fit', 'Waitlist form', 'Netlify success', 'GA4 sign_up'],
+    conversionFlow: ['Visitor', 'Problem and workflow', 'Use-case fit', 'Waitlist form', 'Netlify success', 'GA4 generate_lead'],
     technicalDecisions: [
       { title: 'One primary conversion', detail: 'Every major CTA returns to the private-beta waitlist instead of splitting attention across demo, pricing, and contact paths.' },
       { title: 'Static Astro with custom CSS', detail: 'The site ships semantic HTML and a small interaction layer while keeping the responsive visual system directly inspectable.' },
