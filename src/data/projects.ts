@@ -25,6 +25,12 @@ export type Project = {
   evidenceNote?: string;
   github?: string;
   featured?: boolean;
+  caseStudyFocus?: 'operations' | 'frontend';
+  proofPoints?: { value: string; label: string }[];
+  technicalDecisions?: { title: string; detail: string }[];
+  validation?: string[];
+  gallery?: { src: string; alt: string; caption: string; width: number; height: number }[];
+  conversionFlow?: string[];
 };
 
 export const projects: Project[] = [
@@ -32,39 +38,41 @@ export const projects: Project[] = [
     slug: 'avodah',
     index: '01',
     title: 'Avodah Wealth Advisory',
-    category: 'Website Design & Development · Content Architecture · Digital Experience',
+    category: 'Frontend Development · Information Architecture · Conversion Delivery',
     summary:
-      'A multi-page advisory website I designed and built to explain Avodah’s services clearly, guide different client audiences, and turn interest into needs-check and consultation inquiries.',
+      'A production-deployed, 29-page advisory website with audience-specific service pathways, two lead-capture journeys, accessible forms, analytics, SEO infrastructure, and security headers.',
     engagement: 'Website design, development, and digital operations support',
     scope:
       'Public website architecture, service content, inquiry journeys, compliance pages, deployment, production QA, and ongoing updates.',
     ownership:
       'Site structure, responsive build, content organization, forms, trust and disclosure pages, and GitHub/Netlify delivery.',
     operationalOutcome:
-      'A coherent public-facing website with clearer service navigation and direct discovery-to-inquiry paths.',
+      'A 29-page public website with two production lead-capture journeys and a repeatable GitHub-to-Netlify release workflow.',
     challenge:
       'Avodah needed a credible public website that could present a broad mix of advisory services without confusing visitors or implying that the company directly lends, underwrites, or approves products. The experience also needed clear pathways for families, OFWs, seafarers, professionals, and business owners.',
     approach:
-      'I organized the site around visitor intent: understand what Avodah does, identify the relevant service, complete a short needs check, and request a consultation. I paired a consistent visual system with plain-language service explanations, responsive layouts, and compliance-conscious disclosures.',
+      'I organized the site around visitor intent rather than an exclusively product-led catalog: understand the service, identify the relevant audience path, complete a needs check or request a consultation, and reach a confirmed thank-you state. Static HTML, CSS, and JavaScript kept the deployment surface small and predictable.',
     contributions: [
       'Planned and built the multi-page website structure, responsive interface, navigation, and visual system.',
       'Wrote and organized audience-specific service content for protection, loans, travel, and business-support pathways.',
-      'Created the free needs-check and consultation journeys, including inquiry forms and clear calls to action.',
-      'Added supporting trust content such as FAQs, provider disclosures, privacy information, terms, and disclaimers.',
-      'Managed version control, deployment, production QA, and ongoing website updates through GitHub and Netlify.'
+      'Implemented two Netlify Forms journeys with honeypot protection, client-side validation, accessible inline errors, first-invalid-field focus, and thank-you handling.',
+      'Added GA4 page-view measurement and recorded `generate_lead` only after a confirmed successful conversion.',
+      'Implemented sitemap, robots, custom 404, CSP and other security headers, and documented accessibility maintenance.',
+      'Managed version control, production QA, and the GitHub-to-Netlify release workflow.'
     ],
     deliverables: [
       'Responsive multi-page company website',
       'Audience and service landing pages',
-      'Free needs-check flow and planning guides',
-      'Consultation inquiry form',
-      'FAQs and compliance disclosures',
-      'Privacy, terms, and disclaimer pages',
-      'GitHub and Netlify deployment workflow'
+      'Five audience pathways: families, OFWs, seafarers, professionals, and business owners',
+      'Needs-check and consultation conversion journeys',
+      'Netlify Forms with accessible validation and honeypot protection',
+      'GA4 page views and successful-lead tracking',
+      'Sitemap, robots, custom 404, and security headers',
+      'GitHub-to-Netlify deployment workflow'
     ],
     outcome:
-      'The finished website gives Avodah a coherent public-facing presence with clearer service navigation, audience-specific guidance, stronger trust signals, and direct paths from discovery to inquiry.',
-    tools: ['HTML', 'CSS', 'JavaScript', 'GitHub', 'Netlify', 'Google Analytics'],
+      'Delivered a 29-page public website with audience-specific service pathways, two lead-capture journeys, production forms, analytics, SEO infrastructure, security headers, and a repeatable GitHub-to-Netlify release workflow.',
+    tools: ['HTML', 'CSS', 'JavaScript', 'Netlify Forms', 'GA4', 'GitHub', 'Netlify'],
     image: '/assets/avodah-website-proof.webp',
     imageAlt: 'Homepage of the Avodah Wealth Advisory website designed and built by JC Pelotea',
     imageWidth: 1120,
@@ -75,12 +83,198 @@ export const projects: Project[] = [
     liveNote:
       'Live project — explore the published service pages, needs-check flow, planning guides, FAQs, consultation form, and responsive experience.',
     evidenceNote:
-      'The live website is the primary public artifact. Screenshots and descriptions focus on the published experience; private client and business information is excluded.',
-    featured: true
+      'Evidence is limited to public repository and website behavior. The gallery excludes lead records, analytics-account details, and other private business information.',
+    featured: true,
+    caseStudyFocus: 'frontend',
+    proofPoints: [
+      { value: '29', label: 'indexed pages in the sitemap' },
+      { value: '5', label: 'principal audience pathways' },
+      { value: '2', label: 'primary conversion journeys' },
+      { value: 'GA4', label: 'page views + confirmed leads' }
+    ],
+    conversionFlow: ['Visitor', 'Audience or service page', 'Needs check or consultation', 'Netlify form', 'Thank-you state', 'GA4 generate_lead'],
+    technicalDecisions: [
+      {
+        title: 'Intent-based information architecture',
+        detail: 'Audience and service paths help visitors start from the need they recognize instead of navigating an exclusively product-led catalog.'
+      },
+      {
+        title: 'Static frontend for predictable delivery',
+        detail: 'HTML, CSS, and JavaScript keep deployment overhead low while supporting responsive layouts, forms, analytics, and SEO infrastructure.'
+      },
+      {
+        title: 'Measure completed leads, not intent clicks',
+        detail: '`generate_lead` is recorded after a successful conversion rather than when a visitor merely activates a CTA.'
+      },
+      {
+        title: 'Accessibility in interaction details',
+        detail: 'Navigation state, inline errors, first-invalid-field focus, visible contrast, and flexible partner-logo layouts are maintained as part of frontend QA.'
+      },
+      {
+        title: 'Compliance-conscious service explanations',
+        detail: 'Disclosures clarify that Avodah provides guidance and assistance but does not directly lend, underwrite, approve products, or guarantee outcomes.'
+      }
+    ],
+    validation: [
+      'Verified 29 public URLs in the repository sitemap.',
+      'Reviewed Netlify form detection attributes, honeypots, required-field validation, accessible error states, and thank-you handling.',
+      'Verified GA4 page-view configuration and `generate_lead` execution in the public source without claiming GTM, Meta Pixel, or Search Console.',
+      'Reviewed CSP, permissions, referrer, frame, and content-type headers in `netlify.toml`.',
+      'Maintained an accessibility fix record covering navigation state, contrast, label spacing, flexible logo layouts, footer containment, and form behavior.'
+    ],
+    gallery: [
+      {
+        src: '/assets/avodah-home-desktop.jpg',
+        alt: 'Desktop homepage of the Avodah Wealth Advisory website',
+        caption: 'Desktop homepage — audience framing, service pathways, trust context, and primary conversion choices.',
+        width: 1424,
+        height: 900
+      },
+      {
+        src: '/assets/avodah-mobile-navigation.jpg',
+        alt: 'Avodah Wealth Advisory mobile navigation opened over the homepage',
+        caption: 'Mobile navigation — explicit expanded state and direct access to the needs check and consultation path.',
+        width: 375,
+        height: 811
+      },
+      {
+        src: '/assets/avodah-needs-check.jpg',
+        alt: 'Avodah Wealth Advisory needs-check form flow',
+        caption: 'Needs-check journey — structured qualifying questions, accessible progress context, consent, and honeypot-protected Netlify handling.',
+        width: 1424,
+        height: 1318
+      },
+      {
+        src: '/assets/avodah-consultation-form.jpg',
+        alt: 'Avodah Wealth Advisory consultation request page and form',
+        caption: 'Consultation journey — direct contact options, labeled fields, disclosures, validation, and a dedicated confirmation route.',
+        width: 1424,
+        height: 1671
+      }
+    ]
+  },
+  {
+    slug: 'project-handoff',
+    index: '02',
+    title: 'Project Handoff',
+    category: 'Landing Page · B2B SaaS Concept · Conversion Engineering',
+    summary:
+      'A fictional B2B SaaS waitlist concept designed and built as a complete conversion-focused landing page with a production form, consent-aware analytics, accessibility, SEO, and documented design decisions.',
+    engagement: 'Independent frontend portfolio concept',
+    scope:
+      'Product brief, content architecture, responsive visual system, waitlist conversion, privacy and thank-you routes, analytics contract, deployment, and QA.',
+    ownership:
+      'Product framing, copy structure, interface design, Astro implementation, CSS, form behavior, analytics, documentation, and release validation.',
+    operationalOutcome:
+      'An inspectable end-to-end landing-page sample built around one truthful private-beta conversion.',
+    challenge:
+      'The sample needed to demonstrate conversion-focused frontend execution without relying on fabricated customer logos, testimonials, user counts, or performance claims.',
+    approach:
+      'I framed a specific recurring-work problem for agencies and consultancies, mapped one primary conversion from hero to waitlist, documented the visual and content decisions, and implemented the experience as a lightweight Astro static site.',
+    contributions: [
+      'Created the product brief, content map, visual tokens, component states, responsive annotations, decision log, and QA checklist.',
+      'Built the semantic landing-page sequence, CSS product illustration, responsive navigation, native FAQ disclosures, privacy notice, thank-you route, and custom 404.',
+      'Implemented a three-field Netlify Forms waitlist with honeypot protection, accessible inline validation, loading/error/success states, consent text, and first-invalid-field focus.',
+      'Implemented GA4 consent denied by default, then limited events to CTA placement, form start, form errors without field values, and confirmed `sign_up`.',
+      'Verified production output, internal links, keyboard behavior, error states, reduced-motion behavior, and horizontal overflow across five target widths.'
+    ],
+    deliverables: [
+      'Responsive B2B SaaS landing page',
+      'Private-beta waitlist conversion',
+      'Privacy, thank-you, and 404 routes',
+      'Inspectable design-process documentation',
+      'Consent-aware GA4 event contract',
+      'Netlify-ready production configuration'
+    ],
+    outcome:
+      'Delivered an honest, inspectable landing-page sample that connects positioning, interface design, form handling, measurement, accessibility, SEO, and deployment into one conversion path.',
+    tools: ['Astro', 'HTML', 'Custom CSS', 'JavaScript', 'Netlify Forms', 'GA4', 'GitHub', 'Netlify'],
+    image: '/assets/project-handoff-preview.jpg',
+    imageAlt: 'Project Handoff landing-page hero and product workflow illustration',
+    imageWidth: 1424,
+    imageHeight: 900,
+    socialImage: '/assets/project-handoff-preview.jpg',
+    live: 'https://project-handoff-jc.netlify.app/',
+    liveLabel: 'View Project Handoff ↗',
+    liveNote: 'Fictional portfolio concept — no commercial customers, traction, testimonials, or performance claims are presented.',
+    evidenceNote: 'The public repository documents the brief, content map, design system, decisions, QA criteria, implementation, and release evidence.',
+    github: 'https://github.com/Jpelotea/project-handoff',
+    featured: true,
+    caseStudyFocus: 'frontend',
+    proofPoints: [
+      { value: '1', label: 'primary conversion path' },
+      { value: '3', label: 'purpose-limited form fields' },
+      { value: '4', label: 'privacy-safe GA4 events' },
+      { value: '5', label: 'responsive widths verified' }
+    ],
+    conversionFlow: ['Visitor', 'Problem and workflow', 'Use-case fit', 'Waitlist form', 'Netlify success', 'GA4 sign_up'],
+    technicalDecisions: [
+      { title: 'One primary conversion', detail: 'Every major CTA returns to the private-beta waitlist instead of splitting attention across demo, pricing, and contact paths.' },
+      { title: 'Static Astro with custom CSS', detail: 'The site ships semantic HTML and a small interaction layer while keeping the responsive visual system directly inspectable.' },
+      { title: 'Form values stay out of analytics', detail: 'GA4 receives placement, state, method, and error category only—never email addresses, team size, or workflow answers.' },
+      { title: 'Consent before measurement', detail: 'Analytics storage is denied by default and the GA script does not load until a visitor explicitly opts in.' },
+      { title: 'Native controls where possible', detail: 'The FAQ uses `details`/`summary`; form fields use native validity with custom accessible errors; motion respects the user’s reduced-motion setting.' }
+    ],
+    validation: [
+      'Astro production build generates four routes with no broken internal links.',
+      'No horizontal overflow at 360, 390, 768, 1024, or 1440 px.',
+      'Mobile navigation exposes expanded state, closes with Escape, and restores a stable closed state.',
+      'Invalid submission marks all required controls and focuses the work-email field first.',
+      'Declining analytics leaves the Google tag script unloaded.'
+    ]
+  },
+  {
+    slug: 'jc-portfolio',
+    index: '03',
+    title: 'JC Professional Portfolio',
+    category: 'Astro Frontend · Accessibility · Cloudflare Delivery',
+    summary:
+      'A production Astro portfolio built as a responsive, accessible evidence system with project routes, image proof, structured metadata, automated quality checks, and Cloudflare deployment.',
+    engagement: 'Independent portfolio product',
+    scope: 'Information architecture, Astro components, responsive UI, accessibility, SEO, build validation, GitHub workflows, and Cloudflare delivery.',
+    ownership: 'Frontend architecture, implementation, content modeling, QA automation, deployment configuration, and ongoing maintenance.',
+    operationalOutcome: 'A public evidence system that supports both a broad operations profile and a dedicated frontend application path.',
+    challenge: 'The portfolio needed to organize different kinds of professional evidence without turning the homepage into a generic skills list or forcing every case study into the same narrative.',
+    approach: 'I separated reusable project data from page rendering, built specialist routing where positioning differs, and treated keyboard behavior, reduced motion, safe-area handling, metadata, and release checks as part of the product.',
+    contributions: [
+      'Built the static Astro page and component architecture with reusable project data.',
+      'Implemented responsive navigation, visible focus, reduced-motion support, lightbox behavior, and mobile safe-area handling.',
+      'Added canonical and social metadata, structured data, sitemap generation, favicon assets, and image-dimension checks.',
+      'Configured GitHub quality checks and Cloudflare static delivery with a separate event endpoint for portfolio CTA measurement.'
+    ],
+    deliverables: ['Responsive portfolio', 'Reusable case-study renderer', 'Frontend-specific entry route', 'Automated build and content checks', 'Cloudflare deployment configuration'],
+    outcome: 'Delivered and maintained a production portfolio whose positioning, evidence, and release controls can evolve without replacing its broader professional narrative.',
+    tools: ['Astro', 'HTML', 'CSS', 'JavaScript', 'GitHub Actions', 'Cloudflare Workers'],
+    image: '/assets/og-default.svg',
+    imageAlt: 'Joshua Carl Pelotea professional portfolio social preview',
+    imageWidth: 1200,
+    imageHeight: 630,
+    socialImage: '/assets/og-default.svg',
+    live: 'https://portfolio.jcpelotea.workers.dev/',
+    liveLabel: 'Open portfolio ↗',
+    github: 'https://github.com/Jpelotea/jc-professional-portfolio',
+    featured: true,
+    caseStudyFocus: 'frontend',
+    proofPoints: [
+      { value: 'Astro', label: 'static component architecture' },
+      { value: 'WCAG', label: 'keyboard and motion basics' },
+      { value: 'CI', label: 'automated portfolio checks' },
+      { value: 'Edge', label: 'Cloudflare delivery' }
+    ],
+    technicalDecisions: [
+      { title: 'Data-driven case studies', detail: 'Reusable project fields keep summaries, proof, validation, tools, and frontend-specific evidence consistent across listings and detail routes.' },
+      { title: 'Specialist route, stable homepage', detail: 'The `/frontend/` entry point supports a targeted application without rewriting the broader operations-led homepage.' },
+      { title: 'Progressive interaction layer', detail: 'Navigation, lightbox, theme, and motion behaviors enhance static content while preserving a usable HTML baseline.' }
+    ],
+    validation: [
+      'Astro check and production build run in the portfolio quality workflow.',
+      'Automated checks cover internal links, image dimensions, external links, and structured data.',
+      'Desktop and mobile visual QA confirm responsive navigation and no horizontal overflow.'
+    ]
   },
   {
     slug: 'openready',
-    index: '02',
+    index: '04',
     title: 'OpenReady',
     category: 'Digital Product · GitHub · Release Operations',
     summary:
@@ -118,7 +312,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'ice-zeta',
-    index: '03',
+    index: '05',
     title: 'ICE Zeta Group',
     category: 'Brand Systems · Website · Recruitment Messaging',
     summary:
@@ -155,7 +349,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'konnevia',
-    index: '04',
+    index: '06',
     title: 'Konnevia',
     category: 'Product Operations · Digital QA · Release Readiness',
     summary:

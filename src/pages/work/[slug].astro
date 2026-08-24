@@ -11,6 +11,7 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props as { project: Project };
+const isFrontendCaseStudy = project.caseStudyFocus === 'frontend';
 const title = `${project.title} | Joshua Carl Pelotea (JC)`;
 const description = `${project.title} case study by Joshua Carl Pelotea (JC): ${project.summary}`;
 const structuredData = [
@@ -71,41 +72,85 @@ const structuredData = [
 
     <section class="case-facts-section">
       <div class="container">
-        <dl class="case-facts glass-panel" aria-label={`${project.title} engagement summary`}>
-          <div><dt>Role / engagement</dt><dd>{project.engagement}</dd></div>
+        <dl class={`case-facts glass-panel ${isFrontendCaseStudy ? 'case-facts--frontend' : ''}`} aria-label={`${project.title} engagement summary`}>
+          <div><dt>{isFrontendCaseStudy ? 'Role / build' : 'Role / engagement'}</dt><dd>{project.engagement}</dd></div>
           <div><dt>Scope</dt><dd>{project.scope}</dd></div>
           <div><dt>What I owned</dt><dd>{project.ownership}</dd></div>
-          <div><dt>Operational outcome</dt><dd>{project.operationalOutcome}</dd></div>
+          <div><dt>{isFrontendCaseStudy ? 'Delivered result' : 'Operational outcome'}</dt><dd>{project.operationalOutcome}</dd></div>
         </dl>
+        {isFrontendCaseStudy && project.proofPoints && (
+          <dl class="frontend-proof-points" aria-label={`${project.title} proof points`}>
+            {project.proofPoints.map((point) => <div><dt>{point.value}</dt><dd>{point.label}</dd></div>)}
+          </dl>
+        )}
       </div>
     </section>
 
     <section class="section--compact">
       <div class="container">
-        <article class="case-section">
-          <aside>01 · Context</aside>
-          <div class="content"><h2>The challenge</h2><p>{project.challenge}</p></div>
-        </article>
-        <article class="case-section">
-          <aside>02 · Approach</aside>
-          <div class="content"><h2>The approach</h2><p>{project.approach}</p></div>
-        </article>
-        <article class="case-section">
-          <aside>03 · Contribution</aside>
-          <div class="content"><h2>What I contributed</h2><ul class="clean-list">{project.contributions.map((item) => <li>{item}</li>)}</ul></div>
-        </article>
-        <article class="case-section">
-          <aside>04 · Evidence</aside>
-          <div class="content"><h2>Key deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>{project.evidenceNote || 'Public evidence focuses on publishable artifacts and selected deliverables while confidential business information and applicant-level personal data remain private.'}</p></div>
-        </article>
-        <article class="case-section">
-          <aside>05 · Outcome</aside>
-          <div class="content"><h2>The result</h2><p>{project.outcome}</p></div>
-        </article>
-        <article class="case-section">
-          <aside>06 · Environment</aside>
-          <div class="content"><h2>Tools used</h2><ul class="pill-list">{project.tools.map((tool) => <li>{tool}</li>)}</ul></div>
-        </article>
+        {isFrontendCaseStudy ? (
+          <>
+            <article class="case-section">
+              <aside>01 · Client brief</aside>
+              <div class="content"><h2>The frontend problem</h2><p>{project.challenge}</p></div>
+            </article>
+            <article class="case-section">
+              <aside>02 · Architecture</aside>
+              <div class="content">
+                <h2>Architecture and conversion path</h2>
+                <p>{project.approach}</p>
+                {project.conversionFlow && (
+                  <ol class="conversion-flow" aria-label={`${project.title} conversion flow`}>
+                    {project.conversionFlow.map((step) => <li>{step}</li>)}
+                  </ol>
+                )}
+              </div>
+            </article>
+            <article class="case-section">
+              <aside>03 · Implementation</aside>
+              <div class="content"><h2>Frontend implementation</h2><ul class="clean-list">{project.contributions.map((item) => <li>{item}</li>)}</ul></div>
+            </article>
+            {project.technicalDecisions && (
+              <article class="case-section">
+                <aside>04 · Decisions</aside>
+                <div class="content"><h2>Technical decisions</h2><div class="decision-grid">{project.technicalDecisions.map((decision) => <article><h3>{decision.title}</h3><p>{decision.detail}</p></article>)}</div></div>
+              </article>
+            )}
+            <article class="case-section">
+              <aside>05 · Validation</aside>
+              <div class="content">
+                <h2>Validation</h2>
+                {project.validation && <ul class="validation-list">{project.validation.map((item) => <li>{item}</li>)}</ul>}
+                <h3 class="case-subheading">Inspectable deliverables</h3>
+                <ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul>
+                <p>{project.evidenceNote || 'Public evidence focuses on publishable artifacts while confidential information remains private.'}</p>
+              </div>
+            </article>
+            {project.gallery && (
+              <article class="case-section case-section--gallery">
+                <aside>06 · Interface proof</aside>
+                <div class="content content--wide"><h2>Privacy-safe interface evidence</h2><div class="case-gallery">{project.gallery.map((item) => <figure><button type="button" data-lightbox-src={item.src} data-lightbox-alt={item.alt} data-lightbox-caption={item.caption} aria-label={`View larger: ${item.caption}`}><img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" /><span class="zoom-badge" aria-hidden="true">View larger ⤢</span></button><figcaption>{item.caption}</figcaption></figure>)}</div></div>
+              </article>
+            )}
+            <article class="case-section">
+              <aside>{project.gallery ? '07' : '06'} · Result</aside>
+              <div class="content"><h2>Delivered result</h2><p>{project.outcome}</p></div>
+            </article>
+            <article class="case-section">
+              <aside>{project.gallery ? '08' : '07'} · Stack</aside>
+              <div class="content"><h2>Stack</h2><ul class="pill-list">{project.tools.map((tool) => <li>{tool}</li>)}</ul></div>
+            </article>
+          </>
+        ) : (
+          <>
+            <article class="case-section"><aside>01 · Context</aside><div class="content"><h2>The challenge</h2><p>{project.challenge}</p></div></article>
+            <article class="case-section"><aside>02 · Approach</aside><div class="content"><h2>The approach</h2><p>{project.approach}</p></div></article>
+            <article class="case-section"><aside>03 · Contribution</aside><div class="content"><h2>What I contributed</h2><ul class="clean-list">{project.contributions.map((item) => <li>{item}</li>)}</ul></div></article>
+            <article class="case-section"><aside>04 · Evidence</aside><div class="content"><h2>Key deliverables</h2><ul class="clean-list">{project.deliverables.map((item) => <li>{item}</li>)}</ul><p>{project.evidenceNote || 'Public evidence focuses on publishable artifacts and selected deliverables while confidential business information and applicant-level personal data remain private.'}</p></div></article>
+            <article class="case-section"><aside>05 · Outcome</aside><div class="content"><h2>The result</h2><p>{project.outcome}</p></div></article>
+            <article class="case-section"><aside>06 · Environment</aside><div class="content"><h2>Tools used</h2><ul class="pill-list">{project.tools.map((tool) => <li>{tool}</li>)}</ul></div></article>
+          </>
+        )}
       </div>
     </section>
   </main>

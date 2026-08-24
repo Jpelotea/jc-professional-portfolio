@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { projects } from '../../data/projects';
+import { site } from '../../site.config';
+
+const title = 'Joshua Carl Pelotea | Frontend Developer — Landing Pages & Small Websites';
+const description = 'Frontend developer portfolio of Joshua Carl Pelotea: conversion-focused landing pages and small business websites built with Astro, HTML, CSS, and JavaScript.';
+const frontendNavigation = [
+  { label: 'Proof', href: '/frontend/#proof' },
+  { label: 'Capabilities', href: '/frontend/#capabilities' },
+  { label: 'Stack', href: '/frontend/#stack' },
+  { label: 'Broader portfolio', href: '/' }
+] as const;
+const featuredOrder = ['avodah', 'project-handoff', 'jc-portfolio', 'openready'];
+const featured = featuredOrder.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
+const capabilities = [
+  ['Build', 'Responsive landing pages and small websites', 'Semantic Astro and HTML structures, custom CSS, JavaScript interactions, reusable components, and mobile-first layout decisions.'],
+  ['Conversion', 'Focused journeys from message to action', 'Hero and CTA hierarchy, audience pathways, forms, consent, thank-you states, and measurement tied to completed conversions.'],
+  ['Quality', 'Accessibility, SEO, and resilient behavior', 'Keyboard operation, visible focus, reduced motion, structured metadata, responsive QA, error handling, and cross-browser-aware implementation.'],
+  ['Delivery', 'Inspectable production workflows', 'GitHub branches and pull requests, automated checks, Netlify and Cloudflare deployments, release validation, and documented decisions.'],
+  ['Measurement', 'Purpose-limited analytics', 'GA4 page and interaction events, conversion events after confirmed success, consent denied by default, and no form values sent to analytics.']
+];
+const evidence = ['Astro', 'HTML', 'CSS', 'JavaScript', 'Forms', 'GA4', 'Accessibility', 'SEO', 'GitHub', 'Netlify', 'Cloudflare'];
+---
+<BaseLayout title={title} description={description} canonical="/frontend/" image="/assets/project-handoff-preview.jpg">
+  <Header
+    compactRole="Frontend Developer"
+    navigationItems={frontendNavigation}
+    actionHref={`mailto:${site.email}`}
+    actionLabel="Email JC"
+  />
+  <main id="main" class="frontend-page">
+    <section class="front-hero">
+      <div class="container front-hero__grid">
+        <div class="front-hero__copy">
+          <p class="eyebrow">Frontend Developer · Astro, HTML, CSS, JavaScript</p>
+          <h1>Landing pages and small websites built to do real business work.</h1>
+          <p class="lede">I turn written briefs and business requirements into responsive, production-ready websites with intentional information architecture, accessible interactions, conversion paths, SEO foundations, analytics, and deployment quality.</p>
+          <div class="hero-actions">
+            <a class="button" href="#proof">Inspect frontend proof <span aria-hidden="true">→</span></a>
+            <a class="button button--ghost" href={site.resume}>View targeted résumé</a>
+          </div>
+          <p class="front-hero__note">My operations background adds business context: I treat a website as a delivery and measurement system, not only a visual interface.</p>
+        </div>
+        <aside class="front-terminal glass-panel" aria-label="Frontend delivery checklist">
+          <div class="front-terminal__bar"><span></span><span></span><span></span><small>production-checklist.md</small></div>
+          <div class="front-terminal__body">
+            <p><span>01</span><strong>Structure</strong><small>Semantic content and intentional paths</small></p>
+            <p><span>02</span><strong>Interaction</strong><small>Keyboard, form, and state behavior</small></p>
+            <p><span>03</span><strong>Quality</strong><small>Responsive, accessible, SEO-ready</small></p>
+            <p><span>04</span><strong>Delivery</strong><small>Build, deploy, validate, document</small></p>
+            <div><i></i><span>Production-minded frontend delivery</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="front-proof section" id="proof">
+      <div class="container">
+        <div class="front-heading"><div><p class="eyebrow">Featured proof</p><h2>Shipped work, technical decisions, and inspectable evidence.</h2></div><p>Each case study separates what was built, why it was structured that way, how conversion and accessibility were handled, and what was validated.</p></div>
+        <div class="front-proof-grid">
+          {featured.map((project, index) => project && (
+            <article class={`front-proof-card ${index === 0 ? 'front-proof-card--lead' : ''}`}>
+              <a class="front-proof-card__media" href={`/work/${project.slug}/`}>
+                {project.image && <img src={project.image} alt={project.imageAlt || ''} width={project.imageWidth} height={project.imageHeight} loading={index === 0 ? 'eager' : 'lazy'} />}
+                <span>{project.index}</span>
+              </a>
+              <div class="front-proof-card__copy">
+                <small>{project.category}</small>
+                <h3><a href={`/work/${project.slug}/`}>{project.title}</a></h3>
+                <p>{project.summary}</p>
+                {project.proofPoints && <ul aria-label={`${project.title} highlights`}>{project.proofPoints.slice(0, 3).map((point) => <li><strong>{point.value}</strong><span>{point.label}</span></li>)}</ul>}
+                <a class="front-card-link" href={`/work/${project.slug}/`}>Inspect case study →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="front-capabilities section" id="capabilities">
+      <div class="container">
+        <div class="front-heading"><div><p class="eyebrow">Capabilities</p><h2>Five connected parts of production frontend work.</h2></div><p>The useful unit is not a component in isolation—it is a complete page that communicates, converts, behaves correctly, and survives deployment.</p></div>
+        <div class="front-cap-grid">
+          {capabilities.map(([label, title, detail], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><small>{label}</small><h3>{title}</h3><p>{detail}</p></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="front-stack" id="stack" aria-labelledby="stack-heading">
+      <div class="container front-stack__inner">
+        <div><p class="eyebrow" id="stack-heading">Evidence strip</p><p>Tools and practices visible in the projects above.</p></div>
+        <ul>{evidence.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="front-cta section">
+      <div class="container front-cta__inner glass-panel">
+        <div><p class="eyebrow">Available for part-time remote delivery</p><h2>Need a focused page built and finished?</h2><p>Send the brief, audience, desired action, and delivery constraints. I’ll turn them into an inspectable, production-ready frontend.</p></div>
+        <div><a class="button" href={`mailto:${site.email}`}>Email JC <span aria-hidden="true">→</span></a><a class="button button--ghost" href={site.resume}>View résumé</a></div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .frontend-page { --front-green: #65e3c4; --front-green-soft: color-mix(in srgb, var(--front-green) 14%, transparent); }
+  .front-hero { min-height: calc(100vh - 6rem); display: grid; align-items: center; padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(5rem, 9vw, 8rem); }
+  .front-hero__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(22rem, .72fr); gap: clamp(3rem, 8vw, 7rem); align-items: center; }
+  .front-hero h1 { max-width: 12.5ch; margin-bottom: 1.6rem; font-size: clamp(3.6rem, 7.3vw, 7rem); line-height: .93; letter-spacing: -.065em; }
+  .front-hero .lede { max-width: 48rem; font-size: clamp(1.08rem, 1.7vw, 1.28rem); }
+  .front-hero__note { max-width: 43rem; margin: 1.4rem 0 0; padding-left: 1rem; border-left: 2px solid var(--front-green); color: var(--muted); font-size: .88rem; }
+  .front-terminal { overflow: hidden; border-radius: var(--radius); }
+  .front-terminal__bar { min-height: 3rem; display: flex; align-items: center; gap: .45rem; padding-inline: 1rem; border-bottom: 1px solid var(--border); }
+  .front-terminal__bar > span { width: .55rem; height: .55rem; border-radius: 50%; background: var(--border); }
+  .front-terminal__bar small { margin-left: auto; color: var(--muted); font-family: var(--font-system); }
+  .front-terminal__body { padding: 1.4rem; }
+  .front-terminal__body p { display: grid; grid-template-columns: 2.2rem 1fr; gap: 0 .75rem; padding: 1.1rem 0; margin: 0; border-bottom: 1px solid var(--border); }
+  .front-terminal__body p > span { grid-row: 1 / 3; color: var(--front-green); font: 700 .73rem var(--font-system); }
+  .front-terminal__body p strong { color: var(--text); }
+  .front-terminal__body p small { color: var(--muted); }
+  .front-terminal__body > div { display: flex; align-items: center; gap: .65rem; padding-top: 1.25rem; color: var(--muted); font-size: .74rem; }
+  .front-terminal__body i { width: .55rem; height: .55rem; border-radius: 50%; background: var(--front-green); box-shadow: 0 0 0 .35rem var(--front-green-soft); }
+  .front-proof { border-top: 1px solid var(--border); background: color-mix(in srgb, var(--bg-soft) 86%, transparent); }
+  .front-heading { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .55fr); gap: 3rem; align-items: end; margin-bottom: 3rem; }
+  .front-heading h2 { max-width: 16ch; margin-bottom: 0; font-size: clamp(2.6rem, 5vw, 4.7rem); }
+  .front-heading > p { margin-bottom: 0; color: var(--muted); }
+  .front-proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .front-proof-card { display: grid; grid-template-columns: minmax(9rem, .7fr) minmax(0, 1.3fr); overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-subtle); }
+  .front-proof-card--lead { grid-column: 1 / -1; grid-template-columns: minmax(22rem, .9fr) minmax(0, 1.1fr); }
+  .front-proof-card__media { position: relative; min-height: 100%; overflow: hidden; background: var(--surface-strong); }
+  .front-proof-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+  .front-proof-card:hover .front-proof-card__media img { transform: scale(1.025); }
+  .front-proof-card__media > span { position: absolute; left: 1rem; top: 1rem; padding: .35rem .55rem; border: 1px solid var(--border); border-radius: 999px; background: color-mix(in srgb, var(--bg) 84%, transparent); color: var(--front-green); font: 700 .68rem var(--font-system); backdrop-filter: blur(10px); }
+  .front-proof-card__copy { padding: clamp(1.35rem, 3vw, 2.4rem); }
+  .front-proof-card__copy > small { color: var(--accent-2); font: 700 .68rem var(--font-system); letter-spacing: .08em; text-transform: uppercase; }
+  .front-proof-card h3 { margin: .65rem 0 .75rem; font-size: clamp(1.45rem, 2.5vw, 2.2rem); }
+  .front-proof-card h3 a { text-decoration: none; }
+  .front-proof-card p { color: var(--muted); }
+  .front-proof-card ul { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1.3rem 0; padding: 0; list-style: none; }
+  .front-proof-card li { display: flex; gap: .4rem; padding: .4rem .55rem; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: .67rem; }
+  .front-proof-card li strong { color: var(--front-green); }
+  .front-card-link { color: var(--text); font-weight: 760; text-decoration: none; }
+  .front-card-link:hover { color: var(--front-green); }
+  .front-capabilities { background: var(--bg); }
+  .front-cap-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+  .front-cap-grid article { grid-column: span 2; min-height: 21rem; display: flex; flex-direction: column; padding: 1.6rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-subtle); }
+  .front-cap-grid article:nth-child(4), .front-cap-grid article:nth-child(5) { grid-column: span 3; }
+  .front-cap-grid article > span { margin-bottom: auto; color: var(--front-green); font: 700 .72rem var(--font-system); }
+  .front-cap-grid small { margin-top: 4rem; color: var(--accent-2); font: 700 .68rem var(--font-system); letter-spacing: .1em; text-transform: uppercase; }
+  .front-cap-grid h3 { margin: .5rem 0 .7rem; font-size: 1.35rem; }
+  .front-cap-grid p { margin-bottom: 0; color: var(--muted); font-size: .92rem; }
+  .front-stack { border-block: 1px solid var(--border); background: var(--surface-subtle); }
+  .front-stack__inner { display: grid; grid-template-columns: .6fr 1.4fr; gap: 3rem; align-items: center; padding-block: 2rem; }
+  .front-stack__inner p { margin-bottom: 0; color: var(--muted); font-size: .84rem; }
+  .front-stack__inner ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+  .front-stack__inner li { padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-soft); font: 700 .72rem var(--font-system); }
+  .front-cta__inner { display: flex; align-items: end; justify-content: space-between; gap: 3rem; padding: clamp(2rem, 6vw, 4rem); border-radius: var(--radius); }
+  .front-cta h2 { max-width: 13ch; margin-bottom: 1rem; font-size: clamp(2.5rem, 5vw, 4.7rem); }
+  .front-cta p { max-width: 42rem; color: var(--muted); }
+  .front-cta__inner > div:last-child { display: grid; gap: .75rem; flex: none; }
+  @media (max-width: 980px) {
+    .front-hero__grid, .front-heading { grid-template-columns: 1fr; }
+    .front-terminal { max-width: 44rem; }
+    .front-proof-card, .front-proof-card--lead { grid-column: auto; grid-template-columns: 1fr; }
+    .front-proof-card__media { min-height: 17rem; }
+    .front-cap-grid { grid-template-columns: 1fr 1fr; }
+    .front-cap-grid article, .front-cap-grid article:nth-child(4), .front-cap-grid article:nth-child(5) { grid-column: span 1; }
+    .front-stack__inner { grid-template-columns: 1fr; }
+    .front-stack__inner ul { justify-content: flex-start; }
+  }
+  @media (max-width: 680px) {
+    .front-hero { min-height: auto; padding-top: 2rem; }
+    .front-hero h1 { max-width: 10ch; font-size: clamp(3.1rem, 16vw, 4.65rem); }
+    .front-hero .hero-actions { display: grid; }
+    .front-terminal__body { padding: 1rem; }
+    .front-proof-grid, .front-cap-grid { grid-template-columns: 1fr; }
+    .front-proof-card__media { min-height: 13rem; }
+    .front-cap-grid article { min-height: 18rem; }
+    .front-cta__inner { align-items: stretch; flex-direction: column; }
+    .front-cta__inner > div:last-child { width: 100%; }
+  }
+</style>
