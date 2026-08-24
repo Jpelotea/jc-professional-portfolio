@@ -87,7 +87,7 @@ export const projects: Project[] = [
     featured: true,
     caseStudyFocus: 'frontend',
     proofPoints: [
-      { value: '29', label: 'indexed pages in the sitemap' },
+      { value: '29', label: 'public URLs in production sitemap' },
       { value: '5', label: 'principal audience pathways' },
       { value: '2', label: 'primary conversion journeys' },
       { value: 'GA4', label: 'page views + confirmed leads' }
@@ -116,7 +116,7 @@ export const projects: Project[] = [
       }
     ],
     validation: [
-      'Verified 29 public URLs in the repository sitemap.',
+      'Verified 29 public URLs listed in the production sitemap.',
       'Reviewed Netlify form detection attributes, honeypots, required-field validation, accessible error states, and thank-you handling.',
       'Verified GA4 page-view configuration and `generate_lead` execution in the public source without claiming GTM, Meta Pixel, or Search Console.',
       'Reviewed CSP, permissions, referrer, frame, and content-type headers in `netlify.toml`.',
