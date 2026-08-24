@@ -194,8 +194,11 @@ export const projects: Project[] = [
     imageWidth: 1424,
     imageHeight: 900,
     socialImage: '/assets/project-handoff-preview.jpg',
+    live: 'https://project-handoff-jc.netlify.app/',
+    liveLabel: 'View Project Handoff ↗',
     liveNote: 'Fictional portfolio concept — no commercial customers, traction, testimonials, or performance claims are presented.',
     evidenceNote: 'The public repository documents the brief, content map, design system, decisions, QA criteria, implementation, and release evidence.',
+    github: 'https://github.com/Jpelotea/project-handoff',
     featured: true,
     caseStudyFocus: 'frontend',
     proofPoints: [
