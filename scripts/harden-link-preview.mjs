@@ -3,39 +3,56 @@ import { readFile, writeFile } from 'node:fs/promises';
 const file = 'dist/index.html';
 let html = await readFile(file, 'utf8');
 
-const titleMatch = html.match(/<meta property="og:title" content="([^"]+)"\s*\/>/);
-const imageMatch = html.match(/<meta property="og:image" content="([^"]+)"\s*\/>/);
+const metaTags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => match[0]);
 
-if (!titleMatch || !imageMatch) {
+const getAttribute = (tag, name) => {
+  const match = tag.match(new RegExp(`\\b${name}=["']([^"']*)["']`, 'i'));
+  return match?.[1];
+};
+
+const findMeta = (attribute, value) =>
+  metaTags.find((tag) => getAttribute(tag, attribute)?.toLowerCase() === value.toLowerCase());
+
+const titleTag = findMeta('property', 'og:title');
+const imageTag = findMeta('property', 'og:image');
+
+if (!titleTag || !imageTag) {
   throw new Error('Homepage Open Graph title/image metadata was not found.');
 }
 
-const title = titleMatch[1];
-const imageUrl = imageMatch[1];
+const title = getAttribute(titleTag, 'content');
+const imageUrl = getAttribute(imageTag, 'content');
+
+if (!title || !imageUrl) {
+  throw new Error('Homepage Open Graph title/image content was empty.');
+}
 
 const additions = [
-  `<meta property="og:image:secure_url" content="${imageUrl}" />`,
-  '<meta property="og:image:width" content="1200" />',
-  '<meta property="og:image:height" content="630" />',
-  `<meta property="og:image:alt" content="${title} social preview" />`
+  `<meta property="og:image:secure_url" content="${imageUrl}">`,
+  '<meta property="og:image:width" content="1200">',
+  '<meta property="og:image:height" content="630">',
+  `<meta property="og:image:alt" content="${title} social preview">`
 ].join('');
 
-if (!html.includes('property="og:image:width"')) {
-  html = html.replace(imageMatch[0], `${imageMatch[0]}${additions}`);
+if (!findMeta('property', 'og:image:width')) {
+  html = html.replace(imageTag, `${imageTag}${additions}`);
 }
 
-if (!html.includes('name="twitter:image:alt"')) {
-  html = html.replace(
-    /(<meta name="twitter:image" content="[^"]+"\s*\/>)/,
-    `$1<meta name="twitter:image:alt" content="${title} social preview" />`
-  );
+if (!findMeta('name', 'twitter:image:alt')) {
+  const twitterImageTag = findMeta('name', 'twitter:image');
+  if (twitterImageTag) {
+    html = html.replace(
+      twitterImageTag,
+      `${twitterImageTag}<meta name="twitter:image:alt" content="${title} social preview">`
+    );
+  }
 }
 
-if (!html.includes('property="og:locale"')) {
-  html = html.replace(
-    /(<meta property="og:type" content="website"\s*\/>)/,
-    '$1<meta property="og:locale" content="en_US" />'
-  );
+if (!findMeta('property', 'og:locale')) {
+  const ogTypeTag = findMeta('property', 'og:type');
+  if (ogTypeTag) {
+    html = html.replace(ogTypeTag, `${ogTypeTag}<meta property="og:locale" content="en_US">`);
+  }
 }
 
 await writeFile(file, html);
