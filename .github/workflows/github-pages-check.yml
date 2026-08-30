@@ -35,7 +35,7 @@ jobs:
         run: |
           test -f dist/.nojekyll
           test -f dist/index.html
-          test -f dist/assets/og-default.png
-          grep -q 'https://jpelotea.github.io/jc-professional-portfolio/assets/og-default.png' dist/index.html
+          test -f dist/assets/og-default-pages.png
+          grep -q 'https://jpelotea.github.io/jc-professional-portfolio/assets/og-default-pages.png' dist/index.html
           grep -q 'href="/jc-professional-portfolio/work/"' dist/index.html
           ! grep -q 'analytics-events' dist/index.html
