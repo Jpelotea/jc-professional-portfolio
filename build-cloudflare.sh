@@ -11,6 +11,9 @@ cp favicon.svg favicon.ico favicon-16.png favicon-32.png favicon-48.png favicon-
 # Generate conventional raster Open Graph cards from the version-controlled SVG sources.
 node scripts/generate-social-images.mjs
 
+# Add explicit social-crawler metadata to the homepage preview card.
+node scripts/harden-link-preview.mjs
+
 # Cloudflare static-assets 404 handling expects a root 404.html file.
 cp 404.html dist/404.html
 
