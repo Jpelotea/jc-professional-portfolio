@@ -208,7 +208,7 @@
 }
 
 .frontend-proof-points dt {
-  color: var(--accent-2);
+  color: var(--accent-text);
   font: 800 clamp(1.5rem, 3vw, 2.5rem) var(--font-display);
   letter-spacing: -.04em;
 }
@@ -360,7 +360,7 @@
 .project-card__cta {
   display: inline-flex;
   margin-top: .8rem;
-  color: var(--accent-2);
+  color: var(--accent-text);
   font-size: .78rem;
   font-weight: 750;
 }
@@ -429,7 +429,7 @@
 }
 
 .mockup-kicker {
-  color: var(--accent-2);
+  color: var(--accent-text);
   font: 750 .64rem var(--font-system);
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -480,8 +480,9 @@
 
 .proof-media img {
   width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 .case-visual--button {

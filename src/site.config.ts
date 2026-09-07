@@ -1,3 +1,13 @@
+type ResumeDestinations = Readonly<{
+  operations: string | null;
+  frontend: string | null;
+}>;
+
+const resume: ResumeDestinations = {
+  operations: null,
+  frontend: null,
+};
+
 export const site = {
   name: 'Joshua Carl Pelotea',
   shortName: 'JC Pelotea',
@@ -13,7 +23,7 @@ export const site = {
     'Available for business operations, executive support, workflow improvement, and project-based digital operations engagements.',
   email: 'peloteajoshuacarl0@gmail.com',
   booking: 'https://calendar.app.google/Y2ZHPjRLXgX4YoJu5',
-  resume: '/resume/jc-pelotea-resume.pdf',
+  resume,
   social: {
     linkedin: 'https://www.linkedin.com/in/jcpelotea',
     github: 'https://github.com/Jpelotea',
