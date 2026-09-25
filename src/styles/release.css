@@ -5,6 +5,13 @@
   display: none;
 }
 
+.mobile-action-bar.is-suppressed {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, 8px, 0) !important;
+}
+
 .lightbox-close {
   width: 44px;
   height: 44px;
@@ -206,6 +213,10 @@
 }
 
 @media (max-width: 680px) {
+  html {
+    scroll-padding-bottom: calc(5.6rem + env(safe-area-inset-bottom));
+  }
+
   body {
     padding-bottom: calc(4.85rem + env(safe-area-inset-bottom));
   }
