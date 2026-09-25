@@ -40,7 +40,7 @@ const evidence = ['Astro', 'HTML', 'CSS', 'JavaScript', 'Forms', 'GA4', 'Accessi
           <p class="lede">I turn written briefs and business requirements into responsive, production-ready websites with intentional information architecture, accessible interactions, conversion paths, SEO foundations, analytics, and deployment quality.</p>
           <div class="hero-actions">
             <a class="button" href="#proof">Inspect frontend proof <span aria-hidden="true">→</span></a>
-            <a class="button button--ghost" href={site.resume}>View targeted résumé</a>
+            {site.resume.frontend ? <a class="button button--ghost" href={site.resume.frontend} download>Download frontend résumé (PDF)</a> : <a class="button button--ghost" href={`mailto:${site.email}`}>Discuss a website project</a>}
           </div>
           <p class="front-hero__note">My operations background adds business context: I treat a website as a delivery and measurement system, not only a visual interface.</p>
         </div>
@@ -99,7 +99,7 @@ const evidence = ['Astro', 'HTML', 'CSS', 'JavaScript', 'Forms', 'GA4', 'Accessi
     <section class="front-cta section">
       <div class="container front-cta__inner glass-panel">
         <div><p class="eyebrow">Available for part-time remote delivery</p><h2>Need a focused page built and finished?</h2><p>Send the brief, audience, desired action, and delivery constraints. I’ll turn them into an inspectable, production-ready frontend.</p></div>
-        <div><a class="button" href={`mailto:${site.email}`}>Email JC <span aria-hidden="true">→</span></a><a class="button button--ghost" href={site.resume}>View résumé</a></div>
+        <div><a class="button" href={`mailto:${site.email}`}>Email JC <span aria-hidden="true">→</span></a>{site.resume.frontend && <a class="button button--ghost" href={site.resume.frontend} download>Download frontend résumé (PDF)</a>}</div>
       </div>
     </section>
   </main>
@@ -136,7 +136,7 @@ const evidence = ['Astro', 'HTML', 'CSS', 'JavaScript', 'Forms', 'GA4', 'Accessi
   .front-proof-card:hover .front-proof-card__media img { transform: scale(1.025); }
   .front-proof-card__media > span { position: absolute; left: 1rem; top: 1rem; padding: .35rem .55rem; border: 1px solid var(--border); border-radius: 999px; background: color-mix(in srgb, var(--bg) 84%, transparent); color: var(--front-green); font: 700 .68rem var(--font-system); backdrop-filter: blur(10px); }
   .front-proof-card__copy { padding: clamp(1.35rem, 3vw, 2.4rem); }
-  .front-proof-card__copy > small { color: var(--accent-2); font: 700 .68rem var(--font-system); letter-spacing: .08em; text-transform: uppercase; }
+  .front-proof-card__copy > small { color: var(--accent-text); font: 700 .68rem var(--font-system); letter-spacing: .08em; text-transform: uppercase; }
   .front-proof-card h3 { margin: .65rem 0 .75rem; font-size: clamp(1.45rem, 2.5vw, 2.2rem); }
   .front-proof-card h3 a { text-decoration: none; }
   .front-proof-card p { color: var(--muted); }
@@ -150,7 +150,7 @@ const evidence = ['Astro', 'HTML', 'CSS', 'JavaScript', 'Forms', 'GA4', 'Accessi
   .front-cap-grid article { grid-column: span 2; min-height: 21rem; display: flex; flex-direction: column; padding: 1.6rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-subtle); }
   .front-cap-grid article:nth-child(4), .front-cap-grid article:nth-child(5) { grid-column: span 3; }
   .front-cap-grid article > span { margin-bottom: auto; color: var(--front-green); font: 700 .72rem var(--font-system); }
-  .front-cap-grid small { margin-top: 4rem; color: var(--accent-2); font: 700 .68rem var(--font-system); letter-spacing: .1em; text-transform: uppercase; }
+  .front-cap-grid small { margin-top: 4rem; color: var(--accent-text); font: 700 .68rem var(--font-system); letter-spacing: .1em; text-transform: uppercase; }
   .front-cap-grid h3 { margin: .5rem 0 .7rem; font-size: 1.35rem; }
   .front-cap-grid p { margin-bottom: 0; color: var(--muted); font-size: .92rem; }
   .front-stack { border-block: 1px solid var(--border); background: var(--surface-subtle); }

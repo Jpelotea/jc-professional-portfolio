@@ -54,6 +54,8 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/about/index.html
+          test -f dist/frontend/index.html
+          node scripts/check-resume-publication.mjs
           test -f dist/work/index.html
           test -f dist/work/avodah/index.html
           test -f dist/work/openready/index.html
@@ -72,9 +74,6 @@ jobs:
           test -f dist/apple-touch-icon.png
           test -f dist/icon-192.png
           test -f dist/icon-512.png
-          test -f dist/resume/jc-pelotea-resume.pdf
-          test -s dist/resume/jc-pelotea-resume.pdf
-          test "$(head -c 4 dist/resume/jc-pelotea-resume.pdf)" = '%PDF'
           test -d dist/assets
           test -f dist/assets/analytics-events.js
           event_client="$(find dist/assets -maxdepth 1 -type f -name 'analytics-events.*.js' -print -quit)"
@@ -96,8 +95,6 @@ jobs:
           test -f dist/assets/avodah-ops.png
           test -f dist/assets/avodah-creative.png
           test -f dist/assets/openready.png
-          grep -q 'href="/resume/jc-pelotea-resume.pdf"' dist/about/index.html
-          grep -q 'href="/resume/jc-pelotea-resume.pdf"' dist/index.html
           grep -q 'static.cloudflareinsights.com' dist/_headers
           grep -q 'cloudflareinsights.com' dist/_headers
 

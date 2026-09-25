@@ -257,7 +257,7 @@
   .project-card .project-index {
     font-size: .72rem !important;
     line-height: 1;
-    color: var(--accent-2);
+    color: var(--accent-text);
     letter-spacing: .12em;
   }
 
