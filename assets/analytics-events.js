@@ -2,6 +2,10 @@
   if (navigator.globalPrivacyControl === true || navigator.doNotTrack === '1') return;
 
   const endpoint = '/api/events';
+  const resumePaths = new Set([
+    '/resume/jc-pelotea-operations-resume.pdf',
+    '/resume/jc-pelotea-frontend-resume.pdf'
+  ]);
 
   const track = (event) => {
     const body = JSON.stringify({ event, path: window.location.pathname });
@@ -30,7 +34,7 @@
       return null;
     }
 
-    if (url.origin === window.location.origin && url.pathname === '/resume/jc-pelotea-resume.pdf') {
+    if (url.origin === window.location.origin && resumePaths.has(url.pathname)) {
       return 'resume_download';
     }
 

@@ -81,6 +81,9 @@ jobs:
           event_client_name="$(basename "$event_client")"
           grep -q "/assets/$event_client_name" dist/index.html
           grep -q 'resume_download' "$event_client"
+          grep -q '/resume/jc-pelotea-operations-resume.pdf' "$event_client"
+          grep -q '/resume/jc-pelotea-frontend-resume.pdf' "$event_client"
+          ! grep -q '/resume/jc-pelotea-resume.pdf' "$event_client"
           test -f dist/assets/brand/jc-symbol-16-dark.svg
           test -f dist/assets/brand/jc-symbol-16-light.svg
           test -f dist/assets/brand/jc-symbol-simplified-dark.svg

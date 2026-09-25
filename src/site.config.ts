@@ -4,8 +4,8 @@ type ResumeDestinations = Readonly<{
 }>;
 
 const resume: ResumeDestinations = {
-  operations: null,
-  frontend: null,
+  operations: '/resume/jc-pelotea-operations-resume.pdf',
+  frontend: '/resume/jc-pelotea-frontend-resume.pdf',
 };
 
 export const site = {

@@ -208,6 +208,15 @@ const jsonLd = {
 
       initMotion();
 
+      const mobileActionBar = document.querySelector('[data-mobile-action-bar]');
+      const mobileActionAvoidTargets = [...document.querySelectorAll('#contact, .front-cta, .site-footer')];
+      if (mobileActionBar instanceof HTMLElement && mobileActionAvoidTargets.length && 'IntersectionObserver' in window) {
+        const mobileActionObserver = new IntersectionObserver((entries) => {
+          mobileActionBar.classList.toggle('is-suppressed', entries.some((entry) => entry.isIntersecting));
+        }, { threshold: 0.01 });
+        mobileActionAvoidTargets.forEach((target) => mobileActionObserver.observe(target));
+      }
+
       const updateBackToTop = () => {
         backToTopFrame = undefined;
         const control = document.querySelector('[data-back-to-top]');
