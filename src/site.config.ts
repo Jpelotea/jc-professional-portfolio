@@ -27,7 +27,9 @@ export const site = {
   social: {
     linkedin: 'https://www.linkedin.com/in/jcpelotea',
     github: 'https://github.com/Jpelotea',
+    // Active professional platform.
     freelancer: 'https://www.freelancer.com/u/Jpel23',
+    // Personal/social — mixed use; occasionally used for work-related purposes.
     facebook: 'https://www.facebook.com/auhsoj.villafane',
     messenger: 'https://m.me/auhsoj.villafane',
     whatsapp: 'https://api.whatsapp.com/send?phone=639927190779',
