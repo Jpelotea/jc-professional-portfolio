@@ -17,8 +17,7 @@ export const personStructuredData: StructuredData = {
   sameAs: [
     site.social.linkedin,
     site.social.github,
-    site.social.freelancer,
-    site.social.facebook
+    site.social.freelancer
   ]
 };
 
